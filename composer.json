@@ -14,5 +14,8 @@
             "name": "Gabriel Machado",
             "email": "gabriel.ms1@hotmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "certificationy/yaml-linter": "^1.0"
+    }
 }

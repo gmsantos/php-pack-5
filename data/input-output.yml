@@ -14,3 +14,114 @@ questions:
             - {value: '$stderr = fopen("php://stderr", "w");', correct: true}
             - {value: '$stderr = stderr("w")', correct: false}
             - {value: '$stderr = fwrite("php://stderr");', correct: true)}
+
+  -
+    question: Which of the following code snippets DO NOT write the exact content of the file "source.txt" to "target.txt"? (Choose 2)
+    answers:
+      - { value: 'file_put_contents("target.txt", fopen("source.txt", "r"));', correct: false }
+      - { value: 'file_put_contents("target.txt", readfile("source.txt"));', correct: true }
+      - { value: 'file_put_contents("target.txt", join(file("source.txt"), "\n"));', correct: true }
+      - { value: 'file_put_contents("target.txt", file_get_contents("source.txt"));', correct: false }
+      - { value: '$handle = fopen("target.txt", "w+"); fwrite($handle, file_get_contents("source.txt")); fclose($handle);', correct: false }
+  -
+    question: What is the recommended method of copying data between two opened files?
+    answers:
+      - { value: 'copy($source_file, $destination_file);', correct: false }
+      - { value: 'copy($destination_file, $source_file);', correct: false }
+      - { value: 'stream_copy_to_stream($source_file, $destination_file);', correct: true }
+      - { value: 'stream_copy_to_stream($destination_file, $source_file);', correct: false }
+      - { value: 'stream_bucket_prepend($source_file, $destination_file);', correct: false }
+  -
+    question: Which of the following will set a 10 seconds read timeout for a stream?
+    answers:
+      - { value: 'ini_set("default_socket_timeout", 10);', correct: false }
+      - { value: 'stream_read_timeout($stream, 10);', correct: false }
+      - { value: 'Specify the timeout as the 5th parameter to the fsockopen() function used to open a stream', correct: false }
+      - { value: 'stream_set_timeout($stream, 10);', correct: true }
+      - { value: 'None of the above', correct: false }
+  -
+    question: What function allows resizing of PHP's file write buffer?
+    answers:
+      - { value: 'ob_start()', correct: false }
+      - { value: 'set_write_buffer()', correct: false }
+      - { value: 'stream_set_write_buffer()', correct: true }
+      - { value: 'Change the output_buffering INI setting via ini_set() function', correct: false }
+
+
+  -
+    question: What can prevent PHP from being able to open a file on the hard drive (Choose 2)?
+    answers:
+      - { value: 'File system permissions', correct: true }
+      - { value: 'File is outside of open_basedir', correct: true }
+      - { value: 'File is inside the /tmp directory.', correct: false }
+      - { value: 'PHP is running in CGI mode.', correct: false }
+
+  -
+    question: (Type the answer) What is the name of the key in $_FILES['name'] that contains the number of bytes of the uploaded file?
+    answers:
+      - { value: 'size', correct: true }
+      - { value: 'range', correct: false }
+      - { value: 'body', correct: false }
+      - { value: 'dimension', correct: false }
+
+  -
+    question: What function can be used to retrieve an array of current options for a stream context?
+    answers:
+      - { value: 'stream_context_get_params', correct: false }
+      - { value: 'stream_context_get_default', correct: false }
+      - { value: 'stream_context_get_options', correct: true }
+      - { value: "The 'options' element of the stream_get_meta_data return value", correct: false }
+  -
+    question: |
+                When retrieving data from URLs, what are valid ways to make sure all file_get_contents calls send a certain
+                user agent string? (Choose 2)
+    answers:
+      - { value: "$default_opts = array('http'=>array('user_agent'=>'My Cool Browser')); $default =  stream_context_set_default($default_opts);", correct: true }
+      - { value: 'stream_context_set_option("user_agent", "My Cool Browser");', correct: false }
+      - { value: 'ini_set("user_agent", "My Cool Browser");', correct: true }
+      - { value: 'stream_context_set_option($context, "http", "user_agent", "My Cool Browser");', correct: false }
+      
+  -
+    question: Which elements does the array returned by the function pathinfo() contain?
+    answers:
+      - { value: 'root, dir, file', correct: false }
+      - { value: 'dirname, filename, fileextension', correct: false }
+      - { value: 'dirname, basename, extension', correct: true }
+      - { value: 'path, file', correct: false }
+
+  -
+    question: |
+              (Type the answer) Your supervisor wants you to disallow PHP scripts to open remote HTTP and FTP resources using PHP's
+              file functions. Which php.ini setting should you change accordingly?
+    answers:
+      - { value: 'allow_url_fopen = Off', correct: true }
+      - { value: 'allow_url_include = Off', correct: false }
+      - { value: 'disable_functions = fopen,file_get_contents', correct: false }
+      - { value: 'max_input_time = 5', correct: false }
+
+  -
+    question: |
+                (Type the answer) Which PHP function is used to validate whether the contents of $_FILES['name']['tmp_name'] have really
+                been uploaded via HTTP?
+    answers:
+      - { value: 'is_uploaded_file(), is_uploaded_file', correct: true }
+      - { value: 'is_uploaded(), is_uploaded', correct: false }
+      - { value: 'is_file_uploaded(), is_file_uploaded', correct: false }
+
+  -
+    question: |
+                (Type the answer) Which PHP function is used to validate whether the contents of $_FILES['name']['tmp_name'] have really
+                been uploaded via HTTP, and also save the contents into another folder?
+    answers:
+      - { value: 'move_uploaded_file(), move_uploaded_file', correct: true }
+      - { value: 'move_uploaded(), move_uploaded', correct: false }
+      - { value: 'move_file_uploaded(), move_file_uploaded', correct: false }
+
+  -
+    question: |
+                (Type the answer) What is the name of the key for the element in $_FILES['name'] that contains the provisional name of the
+                uploaded file?
+    answers:
+      - { value: 'tmp_name', correct: true }
+      - { value: 'tmp_path', correct: false }
+      - { value: 'tmp', correct: false }

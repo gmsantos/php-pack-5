@@ -1,6 +1,5 @@
 category: Security
 questions:
-
     -
         question: 'Which php.ini directive should be disabled to prevent the execution of a remote PHP script via an include or require construct?'
         answers:
@@ -71,106 +70,98 @@ questions:
             - {value: 'The session key should be regenerated', correct: true}
             - {value: 'The session should be destroyed', correct: false}
             - {value: 'None of the above', correct: false}
-
-
-  -
-    question: |
-                When using password_hash() with the PASSWORD_DEFAULT algorithm constant,
-                which of the following is true? (Choose 2)
-    answers:
-      - { value: 'The algorithm that is used for hashing passwords can change when PHP is upgraded.', correct: true }
-      - { value: 'The salt option should always be set to a longer value to account for future algorithm requirements.', correct: false }
-      - { value: 'The string length of the returned hash can change over time.', correct: true }
-      - { value: "The hash algorithm that's used will always be compatible with crypt().", correct: false }
-  -
-    question: Which of the following are NOT acceptable ways to create a secure password hash in PHP? (Choose 2)
-    answers:
-      - { value: 'md5()', correct: true }
-      - { value: 'hash_pbkdf2()', correct: false }
-      - { value: 'password_hash()', correct: false }
-      - { value: 'crypt()', correct: false }
-      - { value: 'openssl_digest()', correct: true }
-  -
-    question: What is the preferred method for preventing SQL injection?
-    answers:
-      - { value: 'Always using prepared statements for all SQL queries.', correct: true }
-      - { value: 'Always using the available database-specific escaping functionality on all variables prior to building the SQL query.', correct: false }
-      - { value: 'Using addslashes() to escape variables to be used in a query.', correct: false }
-      - { value: 'Using htmlspecialchars() and the available database-specific escaping functionality to escape variables to be used in a query.', correct: false }
-  -
-    question: |
-                Is the following code vulnerable to SQL Injection ($mysqli is an instance of the MySQLi class)?
-                $age = $mysqli->real_escape_string($_GET['age']);
-                $name = $mysqli->real_escape_string($_GET['name']); $query = "SELECT * FROM `table` WHERE name
-                LIKE '$name' AND age = $age"; $results = $mysqli->query($query);
-    answers:
-      - { value: 'No, the code is fully protected from SQL Injection.', correct: false }
-      - { value: 'Yes, because the $name variable is improperly escaped.', correct: false }
-      - { value: 'Yes, because the $name variable and the $age variable is improperly escaped.', correct: false }
-      - { value: 'Yes, because the $age variable is improperly escaped.', correct: true }
-      - { value: 'Yes, because you cannot prevent SQL Injection when using MySQLi', correct: false }
-  -
-    question: Which of the following does NOT help to protect against session hijacking and fixation attacks?
-    answers:
-      - { value: 'Use SSL and set the $secure cookie parameter to true .', correct: false }
-      - { value: 'Set the session.use_only_cookies php.ini parameter to 1 .', correct: false }
-      - { value: 'Set the session.cookie_lifetime php.ini parameter to 0 .', correct: true }
-      - { value: 'Protect against XSS vulnerabilities in the application.', correct: false }
-      - { value: 'Rotate the session id on successful login and logout using session_regenerate_id()', correct: false }
-
-
-  -
-    question: |
-                In a shared hosting environment, session data can be read by PHP scripts written by any user.
-                How can you prevent this? (Choose 2)
-    answers:
-      - { value: 'Store session data in a different location with session.save_path .', correct: true }
-      - { value: 'Store session data in a database.', correct: true }
-      - { value: 'Enable safe_mode .', correct: false }
-      - { value: 'Set session.name to something unique.', correct: false }
-  -
-    question: Which of the following filtering techniques prevents all cross-site scripting (XSS) vulnerabilities?
-    answers:
-      - { value: 'Strip all occurrences of the string <script .', correct: false }
-      - { value: 'Strip all occurrences of the string javascript .', correct: false }
-      - { value: 'Enable magic_quotes_gpc .', correct: false }
-      - { value: 'None of the above.', correct: true }
-  -
-    question: |
-                You work for a shared hosting provider, and your supervisor asks you to disable user scripts to dynamically
-                load PHP extensions using the dl() function. How can you do this? (Choose 2)
-    answers:
-      - { value: "Set enable_dl to Off in the server's php.ini configuration file.", correct: true }
-      - { value: "Add dl to the current value of disable_functions in the server's php.ini configuration file.", correct: true }
-      - { value: "Add dl to the current value of disable_classes in the server's php.ini configuration file.", correct: false }
-      - { value: 'Write a custom function called dl() , save it under the name prepend.inc and then set the auto_prepend_file directive to prepend.inc in php.ini.', correct: false }
-
-
-  -
-    question: Which function can NOT help prevent cross-site scripting? (Choose 2)
-    answers:
-      - { value: 'addslashes()', correct: true }
-      - { value: 'htmlentities()', correct: false }
-      - { value: 'htmlspecialchars()', correct: false }
-      - { value: 'strip_tags()', correct: false }
-      - { value: 'quotemeta()', correct: true }
-  -
-    question: Which constant must be passed as the second argument to htmlentities() to convert single quotes (') to HTML entities?
-    answers:
-      - { value: 'TRUE', correct: false }
-      - { value: 'FALSE', correct: false }
-      - { value: 'ENT_QUOTES', correct: true }
-      - { value: 'ENT_NOQUOTES', correct: false }
-      - { value: 'ENT_COMPAT', correct: false }
-  -
-    question: |
-                One common security risk is exposing error messages directly in the browser. Which PHP configuration
-                directive can be disabled to prevent this?
-    answers:
-      - { value: 'html_display', correct: false }
-      - { value: 'error_reporting', correct: false }
-      - { value: 'display_errors', correct: true }
-      - { value: 'error_log', correct: false }
-      - { value: 'ignore_repeated_errors', correct: false }
-
-    
+    -
+        question: |
+                    When using password_hash() with the PASSWORD_DEFAULT algorithm constant,
+                    which of the following is true? (Choose 2)
+        answers:
+            - { value: 'The algorithm that is used for hashing passwords can change when PHP is upgraded.', correct: true }
+            - { value: 'The salt option should always be set to a longer value to account for future algorithm requirements.', correct: false }
+            - { value: 'The string length of the returned hash can change over time.', correct: true }
+            - { value: "The hash algorithm that's used will always be compatible with crypt().", correct: false }
+    -
+        question: 'Which of the following are NOT acceptable ways to create a secure password hash in PHP? (Choose 2)'
+        answers:
+            - { value: 'md5()', correct: true }
+            - { value: 'hash_pbkdf2()', correct: false }
+            - { value: 'password_hash()', correct: false }
+            - { value: 'crypt()', correct: false }
+            - { value: 'openssl_digest()', correct: true }
+    -
+        question: 'What is the preferred method for preventing SQL injection?'
+        answers:
+            - { value: 'Always using prepared statements for all SQL queries.', correct: true }
+            - { value: 'Always using the available database-specific escaping functionality on all variables prior to building the SQL query.', correct: false }
+            - { value: 'Using addslashes() to escape variables to be used in a query.', correct: false }
+            - { value: 'Using htmlspecialchars() and the available database-specific escaping functionality to escape variables to be used in a query.', correct: false }
+    -
+        question: |
+                    Is the following code vulnerable to SQL Injection ($mysqli is an instance of the MySQLi class)?
+                    $age = $mysqli->real_escape_string($_GET['age']);
+                    $name = $mysqli->real_escape_string($_GET['name']); $query = "SELECT * FROM `table` WHERE name
+                    LIKE '$name' AND age = $age"; $results = $mysqli->query($query);
+        answers:
+            - { value: 'No, the code is fully protected from SQL Injection.', correct: false }
+            - { value: 'Yes, because the $name variable is improperly escaped.', correct: false }
+            - { value: 'Yes, because the $name variable and the $age variable is improperly escaped.', correct: false }
+            - { value: 'Yes, because the $age variable is improperly escaped.', correct: true }
+            - { value: 'Yes, because you cannot prevent SQL Injection when using MySQLi', correct: false }
+    -
+        question: 'Which of the following does NOT help to protect against session hijacking and fixation attacks?'
+        answers:
+            - { value: 'Use SSL and set the $secure cookie parameter to true .', correct: false }
+            - { value: 'Set the session.use_only_cookies php.ini parameter to 1 .', correct: false }
+            - { value: 'Set the session.cookie_lifetime php.ini parameter to 0 .', correct: true }
+            - { value: 'Protect against XSS vulnerabilities in the application.', correct: false }
+            - { value: 'Rotate the session id on successful login and logout using session_regenerate_id()', correct: false }
+    -
+        question: |
+                    In a shared hosting environment, session data can be read by PHP scripts written by any user.
+                    How can you prevent this? (Choose 2)
+        answers:
+          - { value: 'Store session data in a different location with session.save_path .', correct: true }
+          - { value: 'Store session data in a database.', correct: true }
+          - { value: 'Enable safe_mode .', correct: false }
+          - { value: 'Set session.name to something unique.', correct: false }
+    -
+        question: 'Which of the following filtering techniques prevents all cross-site scripting (XSS) vulnerabilities?'
+        answers:
+            - { value: 'Strip all occurrences of the string <script .', correct: false }
+            - { value: 'Strip all occurrences of the string javascript .', correct: false }
+            - { value: 'Enable magic_quotes_gpc .', correct: false }
+            - { value: 'None of the above.', correct: true }
+    -
+        question: |
+                    You work for a shared hosting provider, and your supervisor asks you to disable user scripts to dynamically
+                    load PHP extensions using the dl() function. How can you do this? (Choose 2)
+        answers:
+            - { value: "Set enable_dl to Off in the server's php.ini configuration file.", correct: true }
+            - { value: "Add dl to the current value of disable_functions in the server's php.ini configuration file.", correct: true }
+            - { value: "Add dl to the current value of disable_classes in the server's php.ini configuration file.", correct: false }
+            - { value: 'Write a custom function called dl() , save it under the name prepend.inc and then set the auto_prepend_file directive to prepend.inc in php.ini.', correct: false }
+    -
+        question: 'Which function can NOT help prevent cross-site scripting? (Choose 2)'
+        answers:
+            - { value: 'addslashes()', correct: true }
+            - { value: 'htmlentities()', correct: false }
+            - { value: 'htmlspecialchars()', correct: false }
+            - { value: 'strip_tags()', correct: false }
+            - { value: 'quotemeta()', correct: true }
+    -
+        question: "Which constant must be passed as the second argument to htmlentities() to convert single quotes (') to HTML entities?"
+        answers:
+            - { value: 'TRUE', correct: false }
+            - { value: 'FALSE', correct: false }
+            - { value: 'ENT_QUOTES', correct: true }
+            - { value: 'ENT_NOQUOTES', correct: false }
+            - { value: 'ENT_COMPAT', correct: false }
+    -
+        question: |
+                    One common security risk is exposing error messages directly in the browser. Which PHP configuration
+                    directive can be disabled to prevent this?
+        answers:
+            - { value: 'html_display', correct: false }
+            - { value: 'error_reporting', correct: false }
+            - { value: 'display_errors', correct: true }
+            - { value: 'error_log', correct: false }
+            - { value: 'ignore_repeated_errors', correct: false }

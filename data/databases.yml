@@ -1,182 +1,187 @@
 category: Databases
 questions:
+    -
+        question: |
+                    Consider the following table data and PHP code. What is the outcome?
+                    Table data (table name "users" with primary key "id"):
 
-  -
-    question: |
-                Consider the following table data and PHP code. What is the outcome?
-                Table data (table name "users" with primary key "id"):
-                id name email
-                ------- ----------- -------------------
-                1 anna alpha@example.com
-                2 betty beta@example.org
-                3 clara gamma@example.net
-                5 sue sigma@example.info
-                PHP code (assume the PDO connection is correctly established):
-                $dsn = 'mysql:host=localhost;dbname=exam';
-                $user = 'username';
-                $pass = '********';
-                $pdo = new PDO($dsn, $user, $pass);
-                $cmd = "SELECT * FROM users WHERE id = :id";
-                $stmt = $pdo->prepare($cmd);
-                $id = 3;
-                $stmt->bindParam('id', $id);
-                $stmt->execute();
-                $stmt->bindColumn(3, $result);
-                $row = $stmt->fetch(PDO::FETCH_BOUND);
-    answers:
-      - { value: 'The database will return no rows.', corrent: false }
-      - { value: 'The value of $row will be an array.', corrent: false }
-      - { value: 'The value of $result will be empty.', corrent: false }
-      - { value: "The value of $result will be 'gamma@example.net'.", corrent: true }
-  -
-    question: |
-                Consider the following table data and PHP code. What is the outcome?
-                Table data (table name "users" with primary key "id"):
-                id name email
-                ------- ----------- -------------------
-                1 anna alpha@example.com
-                2 betty beta@example.org
-                3 clara gamma@example.net
-                5 sue sigma@example.info
-                PHP code (assume the PDO connection is correctly established):
-                $dsn = 'mysql:host=localhost;dbname=exam';
-                $user = 'username';
-                $pass = '********';
-                $pdo = new PDO($dsn, $user, $pass);
-                try {
-                  $cmd = "INSERT INTO users (id, name, email) VALUES (:id, :name, :email)"; $stmt = $pdo->prepare
-                  ($cmd);
-                  $stmt->bindValue('id', 1);
-                  $stmt->bindValue('name', 'anna');
-                  $stmt->bindValue('email', 'alpha@example.com');
-                  $stmt->execute();
-                  echo "Success!";
-                } catch (PDOException $e) {
-                  echo "Failure!";
-                  throw $e;
-                }
-    answers:
-      - { value: 'The INSERT will succeed and the user will see the "Success!" message.', correct: false }
-      - { value: 'The INSERT will fail because of a primary key violation, and the user will see the "Success!" message.', correct: true }
-      - { value: 'The INSERT will fail because of a primary key violation, and the user will see a PDO warning message.', correct: false }
-      - { value: 'The INSERT will fail because of a primary key violation, and the user will see the "Failure!" message.', correct: false }
-  -
-    question: |
-                Consider the following table data and PHP code. What is a possible outcome?
-                Table data (table name "users" with primary key "id"):
-                id name email------- ----------- -------------------
-                1 anna alpha@example.com
-                2 betty beta@example.org
-                3 clara gamma@example.net
-                5 sue sigma@example.info
-                PHP code (assume the PDO connection is correctly established):
-                $dsn = 'mysql:host=localhost;dbname=exam';
-                $user = 'username';
-                $pass = '********';
-                $pdo = new PDO($dsn, $user, $pass);
-                $cmd = "SELECT name, email FROM users LIMIT 1";
-                $stmt = $pdo->prepare($cmd);
-                $stmt->execute();
-                $result = $stmt->fetchAll(PDO::FETCH_BOTH);
-                $row = $result[0];
-    answers:
-      - { value: "The value of $row is `array(0 => 'anna', 1 => 'alpha@example.com')`.", correct: false }
-      - { value: "The value of $row is `array('name' => 'anna', 'email' => 'alpha@example.com')`.", correct: false }
-      - { value: "The value of $row is `array(0 => 'anna', 'name' => 'anna', 1 => 'alpha@example.com', 'email' =>'alpha@example.com')`.", correct: true }
-      - { value: "The value of $result is `array('anna' => 'alpha@example.com')`.", correct: false }
-  -
-    question: |
-                Consider the following table data and PHP code, and assume that the database supports transactions.
-                What is the outcome?
-                Table data (table name "users" with primary key "id"):
-                id name email
-                ------- ----------- -------------------
-                1 anna alpha@example.com
-                2 betty beta@example.org
-                3 clara gamma@example.net
-                5 sue sigma@example.info
-                PHP code (assume the PDO connection is correctly established):
-                $dsn = 'mysql:host=localhost;dbname=exam';
-                $user = 'username';
-                $pass = '********';
-                $pdo = new PDO($dsn, $user, $pass);
-                try {
-                  $pdo->exec("INSERT INTO users (id, name, email) VALUES (6, 'bill', 'delta@example.com')");
-                  $pdo->begin();
-                  $pdo->exec("INSERT INTO users (id, name, email) VALUES (7, 'john', 'epsilon@example.com')");
-                  throw new Exception();
-                }
-                catch (Exception $e) {
-                  $pdo->rollBack();
-                }
-    answers:
-      - { value: "The user 'bill' will be inserted, but the user 'john' will not be.", correct: true }
-      - { value: "Both user 'bill' and user 'john' will be inserted.", correct: false }
-      - { value: "Neither user 'bill' nor user 'john' will be inserted.", correct: false }
-      - { value: "The user 'bill' will not be inserted, but the user 'john' will be.", correct: false }
+                    id      name        email
+                    ------- ----------- -------------------
+                    1       anna        alpha@example.com
+                    2       betty       beta@example.org
+                    3       clara       gamma@example.net
+                    5       sue         sigma@example.info
 
+                    PHP code (assume the PDO connection is correctly established):
 
+                    $dsn = 'mysql:host=localhost;dbname=exam';
+                    $user = 'username';
+                    $pass = '********';
+                    $pdo = new PDO($dsn, $user, $pass);
+                    $cmd = "SELECT * FROM users WHERE id = :id";
+                    $stmt = $pdo->prepare($cmd);
+                    $id = 3;
+                    $stmt->bindParam('id', $id);
+                    $stmt->execute();
+                    $stmt->bindColumn(3, $result);
+                    $row = $stmt->fetch(PDO::FETCH_BOUND);
+        answers:
+            - { value: 'The database will return no rows.', corrent: false }
+            - { value: 'The value of $row will be an array.', corrent: false }
+            - { value: 'The value of $result will be empty.', corrent: false }
+            - { value: "The value of $result will be 'gamma@example.net'.", corrent: true }
+    -
+        question: |
+                    Consider the following table data and PHP code. What is the outcome?
+                    Table data (table name "users" with primary key "id"):
 
-  -
-    question: Which of these databases is NOT supported by a PDO driver?
-    answers:
-      - { value: 'Microsoft SQL Server', correct: false }
-      - { value: 'SQLite', correct: false }
-      - { value: 'Microsoft Access', correct: false }
-      - { value: 'Berkeley DB', correct: true }
-  -
-    question: Which of these statements about PDO is NOT true?
-    answers:
-      - { value: 'PDO has built-in support for Large Objects (LOBs).', correct: false }
-      - { value: 'Placeholders within PDO prepared statements need to be named.', correct: true }
-      - { value: 'When something goes wrong, PDO can throw an instance of its own exception class.', correct: false }
-      - { value: 'PDO does not emulate missing database features.', correct: false }
+                    id      name        email
+                    ------- ----------- -------------------
+                    1       anna        alpha@example.com
+                    2       betty       beta@example.org
+                    3       clara       gamma@example.net
+                    5       sue         sigma@example.info
 
+                    PHP code (assume the PDO connection is correctly established):
 
-  -
-    question: Which of the following statements is true?
-    answers:
-      - { value: 'All PHP database extensions support prepared statements', correct: false }
-      - { value: 'All PHP database extensions come with their own special helper functions to escape user data to be used in dynamic SQL queries', correct: false }
-      - { value: 'All PHP database extensions provide an OOP interface', correct: false }
-      - { value: 'All PHP database extensions appear in the output of php -m , if installed and enabled', correct: true }
-  -
-    question: Transactions are used to...
-    answers:
-      - { value: 'guarantee high performance', correct: false }
-      - { value: 'secure data consistency', correct: true }
-      - { value: 'secure access to the database', correct: false }
-      - { value: 'reduce the database server overhead', correct: false }
-      - { value: 'reduce code size in PHP', correct: false }
-  -
-    question: |
-                When a query that is supposed to affect rows is executed as part of a transaction, and reports no affected
-                rows, it could mean that: (Choose 2)
-    answers:
-      - { value: 'The transaction failed', correct: true }
-      - { value: 'The transaction affected no lines', correct: true }
-      - { value: 'The transaction was rolled back', correct: false }
-      - { value: 'The transaction was committed without error', correct: false }
-  -
-    question: |
-                Transactions should be used to: (Choose 2)
-    answers:
-      - { value: 'Prevent errors in case of a power outage or a failure in the SQL connection', correct: true }
-      - { value: 'Ensure that the data is properly formatted', correct: false }
-      - { value: 'Ensure that either all statements are performed properly, or that none of them are.', correct: true }
-      - { value: 'Recover from user errors', correct: false }
-  -
-    question: |
-                An unbuffered database query will: (Choose 2)
-    answers:
-      - { value: 'Return the first data faster', correct: true }
-      - { value: 'Return all data faster', correct: false }
-      - { value: 'Free connection faster for others scripts to use', correct: false }
-      - { value: 'Use less memory', correct: true }
-  -
-    question: Which technique should be used to speed up joins without changing their results?
-    answers:
-      - { value: 'Add indices on joined columns', correct: true }
-      - { value: 'Add a WHERE clause', correct: false }
-      - { value: 'Add a LIMIT clause', correct: false }
-      - { value: 'Use an inner join', correct: false }
+                    $dsn = 'mysql:host=localhost;dbname=exam';
+                    $user = 'username';
+                    $pass = '********';
+                    $pdo = new PDO($dsn, $user, $pass);
+                    try {
+                      $cmd = "INSERT INTO users (id, name, email) VALUES (:id, :name, :email)"; $stmt = $pdo->prepare
+                      ($cmd);
+                      $stmt->bindValue('id', 1);
+                      $stmt->bindValue('name', 'anna');
+                      $stmt->bindValue('email', 'alpha@example.com');
+                      $stmt->execute();
+                      echo "Success!";
+                    } catch (PDOException $e) {
+                      echo "Failure!";
+                      throw $e;
+                    }
+        answers:
+            - { value: 'The INSERT will succeed and the user will see the "Success!" message.', correct: false }
+            - { value: 'The INSERT will fail because of a primary key violation, and the user will see the "Success!" message.', correct: true }
+            - { value: 'The INSERT will fail because of a primary key violation, and the user will see a PDO warning message.', correct: false }
+            - { value: 'The INSERT will fail because of a primary key violation, and the user will see the "Failure!" message.', correct: false }
+    -
+        question: |
+                    Consider the following table data and PHP code. What is a possible outcome?
+                    Table data (table name "users" with primary key "id"):
+
+                    id      name        email
+                    ------- ----------- -------------------
+                    1       anna        alpha@example.com
+                    2       betty       beta@example.org
+                    3       clara       gamma@example.net
+                    5       sue         sigma@example.info
+
+                    PHP code (assume the PDO connection is correctly established):
+
+                    $dsn = 'mysql:host=localhost;dbname=exam';
+                    $user = 'username';
+                    $pass = '********';
+                    $pdo = new PDO($dsn, $user, $pass);
+                    $cmd = "SELECT name, email FROM users LIMIT 1";
+                    $stmt = $pdo->prepare($cmd);
+                    $stmt->execute();
+                    $result = $stmt->fetchAll(PDO::FETCH_BOTH);
+                    $row = $result[0];
+        answers:
+            - { value: "The value of $row is `array(0 => 'anna', 1 => 'alpha@example.com')`.", correct: false }
+            - { value: "The value of $row is `array('name' => 'anna', 'email' => 'alpha@example.com')`.", correct: false }
+            - { value: "The value of $row is `array(0 => 'anna', 'name' => 'anna', 1 => 'alpha@example.com', 'email' =>'alpha@example.com')`.", correct: true }
+            - { value: "The value of $result is `array('anna' => 'alpha@example.com')`.", correct: false }
+    -
+        question: |
+                    Consider the following table data and PHP code, and assume that the database supports transactions.
+                    What is the outcome?
+                    Table data (table name "users" with primary key "id"):
+
+                    id      name        email
+                    ------- ----------- -------------------
+                    1       anna        alpha@example.com
+                    2       betty       beta@example.org
+                    3       clara       gamma@example.net
+                    5       sue         sigma@example.info
+
+                    PHP code (assume the PDO connection is correctly established):
+
+                    $dsn = 'mysql:host=localhost;dbname=exam';
+                    $user = 'username';
+                    $pass = '********';
+                    $pdo = new PDO($dsn, $user, $pass);
+                    try {
+                      $pdo->exec("INSERT INTO users (id, name, email) VALUES (6, 'bill', 'delta@example.com')");
+                      $pdo->begin();
+                      $pdo->exec("INSERT INTO users (id, name, email) VALUES (7, 'john', 'epsilon@example.com')");
+                      throw new Exception();
+                    }
+                    catch (Exception $e) {
+                      $pdo->rollBack();
+                    }
+        answers:
+            - { value: "The user 'bill' will be inserted, but the user 'john' will not be.", correct: true }
+            - { value: "Both user 'bill' and user 'john' will be inserted.", correct: false }
+            - { value: "Neither user 'bill' nor user 'john' will be inserted.", correct: false }
+            - { value: "The user 'bill' will not be inserted, but the user 'john' will be.", correct: false }
+    -
+        question: 'Which of these databases is NOT supported by a PDO driver?'
+        answers:
+            - { value: 'Microsoft SQL Server', correct: false }
+            - { value: 'SQLite', correct: false }
+            - { value: 'MySQL', correct: false }
+            - { value: 'Berkeley DB', correct: true }
+    -
+        question: 'Which of these statements about PDO is NOT true?'
+        answers:
+            - { value: 'PDO has built-in support for Large Objects (LOBs).', correct: false }
+            - { value: 'Placeholders within PDO prepared statements need to be named.', correct: true }
+            - { value: 'When something goes wrong, PDO can throw an instance of its own exception class.', correct: false }
+            - { value: 'PDO does not emulate missing database features.', correct: false }
+    -
+        question: 'Which of the following statements is true?'
+        answers:
+            - { value: 'All PHP database extensions support prepared statements', correct: false }
+            - { value: 'All PHP database extensions come with their own special helper functions to escape user data to be used in dynamic SQL queries', correct: false }
+            - { value: 'All PHP database extensions provide an OOP interface', correct: false }
+            - { value: 'All PHP database extensions appear in the output of php -m , if installed and enabled', correct: true }
+    -
+        question: 'Transactions are used to...'
+        answers:
+            - { value: 'guarantee high performance', correct: false }
+            - { value: 'secure data consistency', correct: true }
+            - { value: 'secure access to the database', correct: false }
+            - { value: 'reduce the database server overhead', correct: false }
+            - { value: 'reduce code size in PHP', correct: false }
+    -
+        question: |
+                    When a query that is supposed to affect rows is executed as part of a transaction, and reports no affected
+                    rows, it could mean that: (Choose 2)
+        answers:
+            - { value: 'The transaction failed', correct: true }
+            - { value: 'The transaction affected no lines', correct: true }
+            - { value: 'The transaction was rolled back', correct: false }
+            - { value: 'The transaction was committed without error', correct: false }
+    -
+        question: 'Transactions should be used to: (Choose 2)'
+        answers:
+            - { value: 'Prevent errors in case of a power outage or a failure in the SQL connection', correct: true }
+            - { value: 'Ensure that the data is properly formatted', correct: false }
+            - { value: 'Ensure that either all statements are performed properly, or that none of them are.', correct: true }
+            - { value: 'Recover from user errors', correct: false }
+    -
+        question: 'An unbuffered database query will: (Choose 2)'
+        answers:
+            - { value: 'Return the first data faster', correct: true }
+            - { value: 'Return all data faster', correct: false }
+            - { value: 'Free connection faster for others scripts to use', correct: false }
+            - { value: 'Use less memory', correct: true }
+    -
+        question: 'Which technique should be used to speed up joins without changing their results?'
+        answers:
+            - { value: 'Add indices on joined columns', correct: true }
+            - { value: 'Add a WHERE clause', correct: false }
+            - { value: 'Add a LIMIT clause', correct: false }
+            - { value: 'Use an inner join', correct: false }

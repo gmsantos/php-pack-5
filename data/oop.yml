@@ -1,6 +1,5 @@
 category: OOP
 questions:
-
     -
         question: 'What are the three access modifiers that you can use in PHP objects?'
         answers:
@@ -57,7 +56,6 @@ questions:
             - {value: 'Static methods cannot be called from within class instances', correct: false}
             - {value: 'Static methods don''t have access to the self keyword', correct: true}
             - {value: 'There is no functional difference between a static and non-static method', correct: false}
-
     -
         question: |
                     What is the output of the following script?
@@ -135,580 +133,553 @@ questions:
             - {value: '__destruct()', correct: false}
             - {value: '__shutdown()', correct: false}
             - {value: '__sleep()', correct: true}
-
-            
-  -
-    question: |
-                What is the output of the following code?
-                class Base {
-                  protected static function whoami() {
-                    echo "Base ";
-                  }
-                  public static function whoareyou() {
-                    static::whoami();
-                  }
-                }
-                class A extends Base {
-                  public static function test() {
-                    Base::whoareyou();
-                    self::whoareyou();
-                    parent::whoareyou();
-                    A::whoareyou();
-                    static::whoareyou();
-                  }
-                  public static function whoami() {
-                    echo "A ";
-                  }
-                }
-                class B extends A {
-                  public static function whoami() {
-                    echo "B ";
-                  }
-                }
-                B::test();
-    answers:
-      - { value: 'B B B B B', correct: false }
-      - { value: 'Base A Base A B', correct: false }
-      - { value: 'Base B B A B', correct: true }
-      - { value: 'Base B A A B', correct: false }
-  -
-    question: |
-                Late static binding is used in PHP to:
-    answers:
-      - { value: 'Load dynamic libraries and extensions at runtime', correct: false }
-      - { value: 'Use caller class information provided in static method call', correct: true }
-      - { value: 'Resolve undefined class names by automatically including needed files', correct: false }
-      - { value: 'Find proper method to call according to the call arguments', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                class Test {
-                  public function __call($name, $args)
-                  {
-                    call_user_func_array(array('static', "test$name"), $args)
-                  }
-                  public function testS($l) {
-                    echo "$l,";
-                  }
-                }
-                class Test2 extends Test {
-                  public function testS($l) {
-                    echo "$l,$l,";
-                  }
-                }
-                $test = new Test2();
-                $test->S('A');
-    answers:
-      - { value: 'A,', correct: false }
-      - { value: 'A,A,', correct: true }
-      - { value: 'A,A,A,', correct: false }
-      - { value: 'PHP Warning: call_user_func_array() expects parameter 1 to be a valid callback', correct: false }
-  -
-    question: Which of the following tasks can be achieved by using magic methods? (Choose 3)
-    answers:
-      - { value: 'Initializing or uninitializing object data', correct: true }
-      - { value: 'Creating a new stream wrapper', correct: false }
-      - { value: 'Creating an iterable object', correct: false }
-      - { value: 'Processing access to undefined methods or properties', correct: true }
-      - { value: 'Overloading operators like +, *, etc.', correct: false }
-      - { value: 'Converting objects to string representation', correct: false}
-  -
-    question: |
-                How should class MyObject be defined for the following code to work properly? Assume $array is an array
-                and MyObject is a user-defined class.
-                $obj = new MyObject();
-                array_walk($array, $obj);
-    answers:
-      - { value: 'MyObject should extend class Closure', correct: false }
-      - { value: 'MyObject should implement interface Callable', correct: false }
-      - { value: 'MyObject should implement method __call', correct: false }
-      - { value: 'MyObject should implement method __invoke', correct: true }
-
-
-  -
-    question: |
-                Consider the following code. What change must be made to the class for the code to work as written?
-                class Magic {
-                  protected $v = array("a" => 1, "b" => 2, "c" => 3); public function __get($v) {
-                    return $this->v[$v];
-                  }
-                }
-                $m = new Magic();
-                $m->d[] = 4;
-                echo $m->d[0];
-    answers:
-      - { value: 'Nothing, this code works just fine.', correct: false }
-      - { value: 'Add __set method doing $this->v[$var] = $val', correct: false }
-      - { value: 'Rewrite __get as: public function __get(&$v)', correct: false }
-      - { value: 'Rewrite __get as: public function &__get($v)', correct: true }
-      - { value: 'Make __get method static', correct: false }
-
-
-  -
-    question: Which of the following is used to find all PHP files under a certain directory?
-    answers:
-      - { value: 'PHPIterator', correct: false }
-      - { value: 'RecursiveTreeIterator', correct: false }
-      - { value: 'RecursiveDirectoryIterator', correct: true }
-      - { value: 'SplTempFileObject', correct: false }
-
-
-  -
-    question: Which of the following is NOT true about PHP traits? (Choose 2)
-    answers:
-      - { value: 'Multiple traits can be used by a single class.', correct: false }
-      - { value: 'A trait can implement an interface.', correct: true }
-      - { value: 'A trait can declare a private variable.', correct: false }
-      - { value: 'Traits are able to be auto-loaded.', correct: false }
-      - { value: 'Traits automatically resolve conflicts based on definition order.', correct: true }
-  -
-    question: |
-                Given the following code, what will the output be:
-                trait MyTrait {
-                  private $abc = 1;
-                  public function increment() {
-                    $this->abc++;
-                  }
-                  public function getValue() {
-                    return $this->abc;
-                  }
-                }
-                class MyClass {
-                  use MyTrait;
-                  public function incrementBy2() {
-                    $this->increment();
-                    $this->abc++;
-                  }
-                }
-                $c = new MyClass;
-                $c->incrementBy2();
-                var_dump($c->getValue());
-    answers:
-      - { value: 'Fatal error: Access to private variable MyTrait::$abc from context MyClass', correct: false }
-      - { value: 'Notice: Undefined property MyClass::$abc', correct: false }
-      - { value: 'int(2)', correct: false }
-      - { value: 'int(3)', correct: true }
-      - { value: 'NULL', correct: false }
-  -
-    question: |
-                Given the following code, how can we use both traits A and B in the same class? (select all that apply)
-                trait A {
-                  public function hello() {
-                    return "hello";
-                  }
-                  public function world() {
-                    return "world";
-                  }
-                }
-                trait B {
-                  public function hello() {
-                    return "Hello";
-                  }
-                  public function person($name) {
-                    return ":$name";
-                  }
-                }
-    answers:
-      - { value: 'Rename the A::hello() method to a different name using A::hello as helloA;', correct: false }
-      - { value: "Use B::hello() instead of A 's version using B::hello insteadof A", correct: true }
-      - { value: "Use B::hello() instead of A 's version using use B::hello", correct: false }
-      - { value: 'Rename the A::hello() method to a different name using A::hello renameto helloA;', correct: false }
-      - { value: 'None of the above (both can be used directly)', correct: false }
-
-
-
-  -
-    question: |
-                In the following code, which line should be changed so it outputs the number 2:
-                class A {
-                  protected $x = array(); /* A */
-                  public function getX() { /* B */
-                    return $this->x; /* C */
-                  }
-                }
-                $a = new A(); /* D */
-                array_push($a->getX(), "one");
-                array_push($a->getX(), "two");
-                echo count($a->getX());
-    answers:
-      - { value: 'No changes needed, the code would output 2 as is', correct: false }
-      - { value: 'Line A, to: protected &$x = array();', correct: false }
-      - { value: 'Line B, to: public function &getX() {', correct: true }
-      - { value: 'Line C, to: return &$this->x;', correct: false }
-      - { value: 'Line D, to: $a =& new A();', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                class A {
-                  public $a = 1;
-                  public function __construct($a) {
-                    $this->a = $a;
-                  }
-                  public function mul() {
-                    return function($x) {
-                      return $this->a*$x;
+    -
+        question: |
+                    What is the output of the following code?
+                    class Base {
+                      protected static function whoami() {
+                        echo "Base ";
+                      }
+                      public static function whoareyou() {
+                        static::whoami();
+                      }
+                    }
+                    class A extends Base {
+                      public static function test() {
+                        Base::whoareyou();
+                        self::whoareyou();
+                        parent::whoareyou();
+                        A::whoareyou();
+                        static::whoareyou();
+                      }
+                      public static function whoami() {
+                        echo "A ";
+                      }
+                    }
+                    class B extends A {
+                      public static function whoami() {
+                        echo "B ";
+                      }
+                    }
+                    B::test();
+        answers:
+            - { value: 'B B B B B', correct: false }
+            - { value: 'Base A Base A B', correct: false }
+            - { value: 'Base B B A B', correct: true }
+            - { value: 'Base B A A B', correct: false }
+    -
+        question: 'Late static binding is used in PHP to:'
+        answers:
+            - { value: 'Load dynamic libraries and extensions at runtime', correct: false }
+            - { value: 'Use caller class information provided in static method call', correct: true }
+            - { value: 'Resolve undefined class names by automatically including needed files', correct: false }
+            - { value: 'Find proper method to call according to the call arguments', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    class Test {
+                      public function __call($name, $args)
+                      {
+                        call_user_func_array(array('static', "test$name"), $args)
+                      }
+                      public function testS($l) {
+                        echo "$l,";
+                      }
+                    }
+                    class Test2 extends Test {
+                      public function testS($l) {
+                        echo "$l,$l,";
+                      }
+                    }
+                    $test = new Test2();
+                    $test->S('A');
+        answers:
+            - { value: 'A,', correct: false }
+            - { value: 'A,A,', correct: true }
+            - { value: 'A,A,A,', correct: false }
+            - { value: 'PHP Warning: call_user_func_array() expects parameter 1 to be a valid callback', correct: false }
+    -
+        question: 'Which of the following tasks can be achieved by using magic methods? (Choose 3)'
+        answers:
+            - { value: 'Initializing or uninitializing object data', correct: true }
+            - { value: 'Creating a new stream wrapper', correct: false }
+            - { value: 'Creating an iterable object', correct: false }
+            - { value: 'Processing access to undefined methods or properties', correct: true }
+            - { value: 'Overloading operators like +, *, etc.', correct: false }
+            - { value: 'Converting objects to string representation', correct: false}
+    -
+        question: |
+                    How should class MyObject be defined for the following code to work properly? Assume $array is an array
+                    and MyObject is a user-defined class.
+                    $obj = new MyObject();
+                    array_walk($array, $obj);
+        answers:
+            - { value: 'MyObject should extend class Closure', correct: false }
+            - { value: 'MyObject should implement interface Callable', correct: false }
+            - { value: 'MyObject should implement method __call', correct: false }
+            - { value: 'MyObject should implement method __invoke', correct: true }
+    -
+        question: |
+                    Consider the following code. What change must be made to the class for the code to work as written?
+                    class Magic {
+                      protected $v = array("a" => 1, "b" => 2, "c" => 3); public function __get($v) {
+                        return $this->v[$v];
+                      }
+                    }
+                    $m = new Magic();
+                    $m->d[] = 4;
+                    echo $m->d[0];
+        answers:
+            - { value: 'Nothing, this code works just fine.', correct: false }
+            - { value: 'Add __set method doing $this->v[$var] = $val', correct: false }
+            - { value: 'Rewrite __get as: public function __get(&$v)', correct: false }
+            - { value: 'Rewrite __get as: public function &__get($v)', correct: true }
+            - { value: 'Make __get method static', correct: false }
+    -
+        question: 'Which of the following is used to find all PHP files under a certain directory?'
+        answers:
+            - { value: 'PHPIterator', correct: false }
+            - { value: 'RecursiveTreeIterator', correct: false }
+            - { value: 'RecursiveDirectoryIterator', correct: true }
+            - { value: 'SplTempFileObject', correct: false }
+    -
+        question: 'Which of the following is NOT true about PHP traits? (Choose 2)'
+        answers:
+            - { value: 'Multiple traits can be used by a single class.', correct: false }
+            - { value: 'A trait can implement an interface.', correct: true }
+            - { value: 'A trait can declare a private variable.', correct: false }
+            - { value: 'Traits are able to be auto-loaded.', correct: false }
+            - { value: 'Traits automatically resolve conflicts based on definition order.', correct: true }
+    -
+        question: |
+                    Given the following code, what will the output be:
+                    trait MyTrait {
+                      private $abc = 1;
+                      public function increment() {
+                        $this->abc++;
+                      }
+                      public function getValue() {
+                        return $this->abc;
+                      }
+                    }
+                    class MyClass {
+                      use MyTrait;
+                      public function incrementBy2() {
+                        $this->increment();
+                        $this->abc++;
+                      }
+                    }
+                    $c = new MyClass;
+                    $c->incrementBy2();
+                    var_dump($c->getValue());
+        answers:
+            - { value: 'Fatal error: Access to private variable MyTrait::$abc from context MyClass', correct: false }
+            - { value: 'Notice: Undefined property MyClass::$abc', correct: false }
+            - { value: 'int(2)', correct: false }
+            - { value: 'int(3)', correct: true }
+            - { value: 'NULL', correct: false }
+    -
+        question: |
+                    Given the following code, how can we use both traits A and B in the same class? (select all that apply)
+                    trait A {
+                      public function hello() {
+                        return "hello";
+                      }
+                      public function world() {
+                        return "world";
+                      }
+                    }
+                    trait B {
+                      public function hello() {
+                        return "Hello";
+                      }
+                      public function person($name) {
+                        return ":$name";
+                      }
+                    }
+        answers:
+            - { value: 'Rename the A::hello() method to a different name using A::hello as helloA;', correct: false }
+            - { value: "Use B::hello() instead of A 's version using B::hello insteadof A", correct: true }
+            - { value: "Use B::hello() instead of A 's version using use B::hello", correct: false }
+            - { value: 'Rename the A::hello() method to a different name using A::hello renameto helloA;', correct: false }
+            - { value: 'None of the above (both can be used directly)', correct: false }
+    -
+        question: |
+                    In the following code, which line should be changed so it outputs the number 2:
+                    class A {
+                      protected $x = array(); /* A */
+                      public function getX() { /* B */
+                        return $this->x; /* C */
+                      }
+                    }
+                    $a = new A(); /* D */
+                    array_push($a->getX(), "one");
+                    array_push($a->getX(), "two");
+                    echo count($a->getX());
+        answers:
+            - { value: 'No changes needed, the code would output 2 as is', correct: false }
+            - { value: 'Line A, to: protected &$x = array();', correct: false }
+            - { value: 'Line B, to: public function &getX() {', correct: true }
+            - { value: 'Line C, to: return &$this->x;', correct: false }
+            - { value: 'Line D, to: $a =& new A();', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    class A {
+                      public $a = 1;
+                      public function __construct($a) {
+                        $this->a = $a;
+                      }
+                      public function mul() {
+                        return function($x) {
+                          return $this->a*$x;
+                        };
+                      }
+                    }
+                    $a = new A(2);
+                    $a->mul = function($x) {
+                      return $x*$x;
                     };
+                    $m = $a->mul();
+                    echo $m(3);
+        answers:
+            - { value: '9', correct: false }
+            - { value: '6', correct: true }
+            - { value: '0', correct: false }
+            - { value: '3', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    class Number {
+                      private $v;
+                      private static $sv = 10;
+                      public function __construct($v) {
+                        $this->v = $v;
+                      }
+                      public function mul() {
+                        return static function ($x) {
+                          return isset($this) ? $this->v*$x : self::$sv*$x;
+                        };
+                      }
+                    }
+                    $one = new Number(1);
+                    $two = new Number(2);
+                    $double = $two->mul();
+                    $x = Closure::bind($double, null, 'Number');
+                    echo $x(5);
+        answers:
+            - { value: '5', correct: false }
+            - { value: '10', correct: false }
+            - { value: '50', correct: true }
+            - { value: 'Fatal error', correct: false }
+    -
+        question: 'In order to create an object storage where each object would be stored only once, you may use which of the following? (Choose 2)'
+        answers:
+            - { value: 'SplFixedArray', correct: false }
+            - { value: 'SplObjectStorage', correct: true }
+            - { value: 'SplString', correct: false }
+            - { value: 'spl_object_hash', correct: true }
+            - { value: 'spl_same_object', correct: false }
+    -
+        question: |
+                  What is the output of the following code?
+                  class test {
+                    public $value = 0;
+                    function test() {
+                      $this->value = 1;
+                    }
+                    function __construct() {
+                      $this->value = 2;
+                    }
                   }
-                }
-                $a = new A(2);
-                $a->mul = function($x) {
-                  return $x*$x;
-                };
-                $m = $a->mul();
-                echo $m(3);
-    answers:
-      - { value: '9', correct: false }
-      - { value: '6', correct: true }
-      - { value: '0', correct: false }
-      - { value: '3', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                class Number {
-                  private $v;
-                  private static $sv = 10;
-                  public function __construct($v) {
-                    $this->v = $v;
+                  $object = new test();
+                  echo $object->value;
+        answers:
+            - { value: '2', correct: true }
+            - { value: '1', correct: false }
+            - { value: '0', correct: false }
+            - { value: '3', correct: false }
+            - { value: 'No Output, PHP will generate an error message.', correct: false }
+    -
+        question: 'Which methods can be used to overload object properties? (Choose 2)'
+        answers:
+            - { value: 'set(), get()', correct: false }
+            - { value: '__set(), __get  ()- __put(), __receive(), __exists()', correct: true }
+            - { value: 'set(), get(), isset()', correct: false }
+            - { value: '__isset(), __unset()', correct: false }
+    -
+        question: |
+                    What is the result of the following code?
+                    class T
+                    {
+                      const A = 42 + 1;
+                    }
+                    echo T::A;
+        answers:
+            - { value: '42', correct: false }
+            - { value: '43', correct: false }
+            - { value: 'Parse error', correct: true }
+    -
+        question: 'Which of the following statements is NOT true?'
+        answers:
+            - { value: 'Class constants are public', correct: false }
+            - { value: 'Class constants are being inherited', correct: false }
+            - { value: 'Class constants can omit initialization (default to NULL)', correct: true }
+            - { value: 'Class constants can be initialized by const', correct: false }
+    -
+        question: |
+                    What is the result of the following code?
+                    define('PI', 3.14);
+                    class T
+                    {
+                      const PI = PI;
+                    }
+                    class Math
+                    {
+                      const PI = T::PI;
+                    }
+                    echo Math::PI;
+        answers:
+            - { value: 'Parse errorB. 3.14', correct: false }
+            - { value: 'PI', correct: true }
+            - { value: 'T::PI', correct: false }
+    -
+        question: |
+                    Given the following code, what is correct?
+                    function f(stdClass &$x = NULL) { $x = 42; }
+                    $z = new stdClass;
+                    f($z);
+                    var_dump($z);
+        answers:
+            - { value: 'Error: Typehints cannot be NULL', correct: false }
+            - { value: 'Error: Typehints cannot be references', correct: false }
+            - { value: 'Result is NULL', correct: false }
+            - { value: 'Result is object of type stdClass', correct: false }
+            - { value: 'Result is 42', correct: true }
+    -
+        question: 'Which of the following statements is NOT correct?'
+        answers:
+            - { value: 'Only methods can have type hints', correct: true }
+            - { value: 'Typehints can be optional', correct: false }
+            - { value: 'Typehints can be references', correct: false }
+    -
+        question: 'Which of the following statements is correct?'
+        answers:
+            - { value: 'Interfaces can extend only one interface', correct: false }
+            - { value: 'Interfaces can extend more than one interface', correct: true }
+            - { value: 'Interfaces can inherit a method from different interfaces', correct: false }
+            - { value: 'Interfaces can redeclare inherited methods', correct: false }
+    -
+        question: 'Which of the following statements about exceptions is correct? (Choose 2)'
+        answers:
+            - { value: 'you can only throw classes derived from Exception', correct: true }
+            - { value: 'a try block can have multiple catch blocks', correct: true }
+            - { value: 'a try block must not be followed by a catch block', correct: false }
+            - { value: 'try blocks cannot contain nested try blocks', correct: false }
+    -
+        question: |
+                  What is the output of the following code?
+                  try {
+                    class MyException extends Exception {};
+                    try {
+                      throw new MyException;
+                    }
+                    catch (Exception $e) {
+                      echo "1:";
+                      throw $e;
+                    }
+                    catch (MyException $e) {
+                      echo "2:";
+                      throw $e;
+                    }
                   }
-                  public function mul() {
-                    return static function ($x) {
-                      return isset($this) ? $this->v*$x : self::$sv*$x;
-                    };
+                  catch (Exception $e) {
+                    echo get_class($e);
                   }
-                }
-                $one = new Number(1);
-                $two = new Number(2);
-                $double = $two->mul();
-                $x = Closure::bind($double, null, 'Number');
-                echo $x(5);
-    answers:
-      - { value: '5', correct: false }
-      - { value: '10', correct: false }
-      - { value: '50', correct: true }
-      - { value: 'Fatal error', correct: false }
-
-            
-  -
-    question: |
-                In order to create an object storage where each object would be stored only once, you may use which of the
-                following? (Choose 2)
-    answers:
-      - { value: 'SplFixedArray', correct: false }
-      - { value: 'SplObjectStorage', correct: true }
-      - { value: 'SplString', correct: false }
-      - { value: 'spl_object_hash', correct: true }
-      - { value: 'spl_same_object', correct: false }
-
-
-  -
-    question: |
-              What is the output of the following code?
-              class test {
-                public $value = 0;
-                function test() {
-                  $this->value = 1;
-                }
-                function __construct() {
-                  $this->value = 2;
-                }
-              }
-              $object = new test();
-              echo $object->value;
-    answers:
-      - { value: '2', correct: true }
-      - { value: '1', correct: false }
-      - { value: '0', correct: false }
-      - { value: '3', correct: false }
-      - { value: 'No Output, PHP will generate an error message.', correct: false }
-  -
-    question: Which methods can be used to overload object properties? (Choose 2)
-    answers:
-      - { value: 'set(), get()', correct: false }
-      - { value: '__set(), __get  ()- __put(), __receive(), __exists()', correct: true }
-      - { value: 'set(), get(), isset()', correct: false }
-      - { value: '__isset(), __unset()', correct: false }
-  -
-    question: |
-                What is the result of the following code?
-                class T
-                {
-                  const A = 42 + 1;
-                }
-                echo T::A;
-    answers:
-      - { value: '42', correct: false }
-      - { value: '43', correct: false }
-      - { value: 'Parse error', correct: true }
-  -
-    question: Which of the following statements is NOT true?
-    answers:
-      - { value: 'Class constants are public', correct: false }
-      - { value: 'Class constants are being inherited', correct: false }
-      - { value: 'Class constants can omit initialization (default to NULL)', correct: true }
-      - { value: 'Class constants can be initialized by const', correct: false }
-  -
-    question: |
-                What is the result of the following code?
-                define('PI', 3.14);
-                class T
-                {
-                  const PI = PI;
-                }
-                class Math
-                {
-                  const PI = T::PI;
-                }
-                echo Math::PI;
-    answers:
-      - { value: 'Parse errorB. 3.14', correct: false }
-      - { value: 'PI', correct: true }
-      - { value: 'T::PI', correct: false }
-  -
-    question: |
-                Given the following code, what is correct?
-                function f(stdClass &$x = NULL) { $x = 42; }
-                $z = new stdClass;
-                f($z);
-                var_dump($z);
-    answers:
-      - { value: 'Error: Typehints cannot be NULL', correct: false }
-      - { value: 'Error: Typehints cannot be references', correct: false }
-      - { value: 'Result is NULL', correct: false }
-      - { value: 'Result is object of type stdClass', correct: false }
-      - { value: 'Result is 42', correct: true }
-  -
-    question: Which of the following statements is NOT correct?
-    answers:
-      - { value: 'Only methods can have type hints', correct: true }
-      - { value: 'Typehints can be optional', correct: false }
-      - { value: 'Typehints can be references', correct: false }
-  -
-    question: Which of the following statements is correct?
-    answers:
-      - { value: 'Interfaces can extend only one interface', correct: false }
-      - { value: 'Interfaces can extend more than one interface', correct: true }
-      - { value: 'Interfaces can inherit a method from different interfaces', correct: false }
-      - { value: 'Interfaces can redeclare inherited methods', correct: false }
-
-
-  -
-    question: Which of the following statements about exceptions is correct? (Choose 2)
-    answers:
-      - { value: 'you can only throw classes derived from Exception', correct: true }
-      - { value: 'a try block can have multiple catch blocks', correct: true }
-      - { value: 'a try block must not be followed by a catch block', correct: false }
-      - { value: 'try blocks cannot contain nested try blocks', correct: false }
-  -
-    question: |
-              What is the output of the following code?
-              try {
-                class MyException extends Exception {};
-                try {
-                  throw new MyException;
-                }
-                catch (Exception $e) {
-                  echo "1:";
-                  throw $e;
-                }
-                catch (MyException $e) {
-                  echo "2:";
-                  throw $e;
-                }
-              }
-              catch (Exception $e) {
-                echo get_class($e);
-              }
-    answers:
-      - { value: 'A parser error, try cannot be followed by multiple catch', correct: false }
-      - { value: '1:', correct: false }
-      - { value: '2:', correct: false }
-      - { value: '1:Exception', correct: false }
-      - { value: '1:MyException', correct: true }
-      - { value: '2:MyException', correct: false}
-      - { value: 'MyException', correct: false }
-  -
-    question: Which of the following is NOT possible using reflection?
-    answers:
-      - { value: 'Analysing of nearly any aspect of classes and interfaces', correct: false }
-      - { value: 'Analysing of nearly any aspect of functions', correct: false }
-      - { value: 'Adding class methods', correct: true }
-      - { value: 'Implement dynamic construction (new with variable class name)', correct: false }
-  -
-    question: What is the name of the method that can be used to provide read access to virtual properties in a class?
-    answers:
-      - { value: '__call()', correct: false }
-      - { value: '__get()', correct: true }
-      - { value: '__set()', correct: false }
-      - { value: '__wakeup()', correct: false }
-      - { value: '__fetch()', correct: false }
-  -
-    question: Which of the following statements about Reflection is correct?
-    answers:
-      - { value: 'Reflection is an extension that can be disabled', correct: false }
-      - { value: 'Reflection is a new extension present only in PHP 5.3+', correct: false }
-      - { value: 'Reflection only allows to reflect on built-in classes', correct: false }
-      - { value: 'Built-in classes can be reflected on command line using php --rc <classname>', correct: true }
-  -
-    question: What is the name of the PHP function used to automatically load non-yet defined classes?
-    answers:
-      - { value: 'autoload()', correct: false }
-      - { value: '__autoload()', correct: true }
-      - { value: '__catch()', correct: false }
-      - { value: 'load()', correct: false }
-      - { value: 'loadClass()', correct: false }
-  -
-    question: |
-                When a class is defined as final it:
-    answers:
-      - { value: 'Can no longer be extended by other classes.', correct: true }
-      - { value: 'Means methods in the class are not over-loadable.', correct: false }
-      - { value: 'Cannot be defined as such, final is only applicable to object methods.', correct: false }
-      - { value: 'Cannot be instantiated.', correct: false }
-  -
-    question: |
-                Type hinting in PHP allows the identification of the
-                following variable types: (Choose 2)
-    answers:
-      - { value: 'String', correct: false }
-      - { value: 'Integer', correct: false }
-      - { value: 'Array', correct: true }
-      - { value: 'Any class or interface type', correct: true }
-      - { value: 'All of the above', correct: false }
-  -
-    question: |
-                In the following code, which classes can be instantiated?
-                abstract class Graphics {
-                  abstract function draw($im, $col);
-                }
-                abstract class Point1 extends Graphics {
-                  public $x, $y;
-                  function __construct($x, $y) {
-                    $this->x = $x;
-                    $this->y = $y;
-                  }
-                  function draw($im, $col) {
-                    ImageSetPixel($im, $this->x, $this->y, $col);
-                  }
-                }
-                class Point2 extends Point1 { }
-                abstract class Point3 extends Point2 { }
-    answers:
-      - { value: 'Graphics', correct: false }
-      - { value: 'Point1', correct: false }
-      - { value: 'Point2', correct: true }
-      - { value: 'Point3', correct: false }
-      - { value: 'None, the code is invalid', correct: false }
-  -
-    question: Which of the following code snippets is correct? (Choose 2)
-    answers:
-      - { value: 'interface Drawable { abstract function draw(); }', correct: false }
-      - { value: 'interface Point { function getX(); function getY(); }', correct: true }
-      - { value: 'interface Line extends Point { function getX2(); function getY2(); }', correct: true }
-      - { value: 'interface Circle implements Point { function getRadius(); }', correct: false }
-  -
-    question: Which of the following statements about PHP is false? (Choose 2)
-    answers:
-      - { value: 'A final class can be derived.', correct: true }
-      - { value: 'A final class may be instantiated.', correct: false }
-      - { value: 'A class with a final function may be derived.', correct: false }
-      - { value: 'Static functions can be final.', correct: false }
-      - { value: 'Properties can be final.', correct: false }
-  -
-    question: Which of the following is correct? (Choose 2)
-    answers:
-      - { value: 'A class can extend more than one class.', correct: false }
-      - { value: 'A class can implement more than one class.', correct: false }
-      - { value: 'A class can extend more than one interface.', correct: false }
-      - { value: 'A class can implement more than one interface.', correct: true }
-      - { value: 'An interface can extend more than one interface.', correct: true }
-      - { value: 'An interface can implement more than one interface.', correct: false}
-  -
-    question: Which of the following functions are used to escape data within the context of HTML? (Choose 2)
-    answers:
-      - { value: 'htmlentities()', correct: true }
-      - { value: 'addslashes()', correct: false }
-      - { value: 'stripslashes()', correct: false }
-      - { value: 'strip_tags()', correct: false }
-      - { value: 'htmlspecialchars()', correct: false }
-
-  -
-    question: |
-                (Type the answer) Consider the following code. Which keyword should be used in the line marked with "KEYWORD" instead
-                of "self" to make this code work as intended?
-                abstract class Base {
-                  protected function __construct() {}
-                  public static function create() {
-                    return new self(); // KEYWORD
-                  }
-                  abstract function action();
-                }
-                class Item extends Base {
-                  public function action() { echo __CLASS__; }
-                }
-                $item = Item::create();
-                $item->action(); // outputs "Item"
-    answers:
-      - { value: 'static', correct: true }
-      - { value: '$this', correct: false }
-      - { value: 'parent', correct: false }
-
-  -
-    question: |
-                (Type the answer) What is the output of the following code?
-                class Number {
-                  private $v = 0;
-                  public function __construct($v) { $this->v = $v; }
-                  public function mul() {
-                    return function ($x) { return $this->v * $x; };
-                  }
-                }
-                $one = new Number(1);
-                $two = new Number(2);
-                $double = $two->mul()->bindTo($one);
-                echo $double(5);
-    answers:
-      - { value: 5, correct: true }
-      - { value: 4, correct: false }
-      - { value: 3, correct: false }
-
-  -
-    question: |
-                What is the output of the following code?
-                class C {
-                  public $x = 1;
-                  function __construct() { ++$this->x; }
-                  function __invoke() { return ++$this->x; }
-                  function __toString() { return (string) --$this->x; }
-                }
-                $obj = new C();
-                echo $obj();
-    answers:
-      - { value: '0', correct: false }
-      - { value: '1', correct: false }
-      - { value: '2', correct: false }
-      - { value: '3', correct: true }
-
-  -
-    question: |
-                Which line of code can be used to replace the INSERT comment in order to output "hello"?
-                class C {
-                  public $ello = 'ello';
-                  public $c;
-                  public $m;
-                  function __construct($y) {
-                      $this->c = static function($f) {
-                        // INSERT LINE OF CODE HERE
-                      };
-                      $this->m = function() {
-                        return "h";
-                      };
-                  }
-                }
-                $x = new C("h");
-                $f = $x->c;
-                echo $f($x->m);
-    answers:
-      - { value: 'return $this->m() . "ello";', correct: false }
-      - { value: 'return $f() . "ello";', correct: true }
-      - { value: 'return "h". $this->ello;', correct: false }
-      - { value: 'return $y . "ello";', correct: false }
+        answers:
+            - { value: 'A parser error, try cannot be followed by multiple catch', correct: false }
+            - { value: '1:', correct: false }
+            - { value: '2:', correct: false }
+            - { value: '1:Exception', correct: false }
+            - { value: '1:MyException', correct: true }
+            - { value: '2:MyException', correct: false}
+            - { value: 'MyException', correct: false }
+    -
+        question: 'Which of the following is NOT possible using reflection?'
+        answers:
+            - { value: 'Analysing of nearly any aspect of classes and interfaces', correct: false }
+            - { value: 'Analysing of nearly any aspect of functions', correct: false }
+            - { value: 'Adding class methods', correct: true }
+            - { value: 'Implement dynamic construction (new with variable class name)', correct: false }
+    -
+        question: 'What is the name of the method that can be used to provide read access to virtual properties in a class?'
+        answers:
+            - { value: '__call()', correct: false }
+            - { value: '__get()', correct: true }
+            - { value: '__set()', correct: false }
+            - { value: '__wakeup()', correct: false }
+            - { value: '__fetch()', correct: false }
+    -
+        question: 'Which of the following statements about Reflection is correct?'
+        answers:
+            - { value: 'Reflection is an extension that can be disabled', correct: false }
+            - { value: 'Reflection is a new extension present only in PHP 5.3+', correct: false }
+            - { value: 'Reflection only allows to reflect on built-in classes', correct: false }
+            - { value: 'Built-in classes can be reflected on command line using php --rc <classname>', correct: true }
+    -
+        question: 'What is the name of the PHP function used to automatically load non-yet defined classes?'
+        answers:
+            - { value: 'autoload()', correct: false }
+            - { value: '__autoload()', correct: true }
+            - { value: '__catch()', correct: false }
+            - { value: 'load()', correct: false }
+            - { value: 'loadClass()', correct: false }
+    -
+        question: 'When a class is defined as final it:'
+        answers:
+            - { value: 'Can no longer be extended by other classes.', correct: true }
+            - { value: 'Means methods in the class are not over-loadable.', correct: false }
+            - { value: 'Cannot be defined as such, final is only applicable to object methods.', correct: false }
+            - { value: 'Cannot be instantiated.', correct: false }
+    -
+        question: 'Type hinting in PHP allows the identification of the following variable types: (Choose 2)'
+        answers:
+            - { value: 'String', correct: false }
+            - { value: 'Integer', correct: false }
+            - { value: 'Array', correct: true }
+            - { value: 'Any class or interface type', correct: true }
+            - { value: 'All of the above', correct: false }
+    -
+        question: |
+                    In the following code, which classes can be instantiated?
+                    abstract class Graphics {
+                      abstract function draw($im, $col);
+                    }
+                    abstract class Point1 extends Graphics {
+                      public $x, $y;
+                      function __construct($x, $y) {
+                        $this->x = $x;
+                        $this->y = $y;
+                      }
+                      function draw($im, $col) {
+                        ImageSetPixel($im, $this->x, $this->y, $col);
+                      }
+                    }
+                    class Point2 extends Point1 { }
+                    abstract class Point3 extends Point2 { }
+        answers:
+            - { value: 'Graphics', correct: false }
+            - { value: 'Point1', correct: false }
+            - { value: 'Point2', correct: true }
+            - { value: 'Point3', correct: false }
+            - { value: 'None, the code is invalid', correct: false }
+    -
+        question: 'Which of the following code snippets is correct? (Choose 2)'
+        answers:
+            - { value: 'interface Drawable { abstract function draw(); }', correct: false }
+            - { value: 'interface Point { function getX(); function getY(); }', correct: true }
+            - { value: 'interface Line extends Point { function getX2(); function getY2(); }', correct: true }
+            - { value: 'interface Circle implements Point { function getRadius(); }', correct: false }
+    -
+        question: 'Which of the following statements about PHP is false? (Choose 2)'
+        answers:
+            - { value: 'A final class can be derived.', correct: true }
+            - { value: 'A final class may be instantiated.', correct: false }
+            - { value: 'A class with a final function may be derived.', correct: false }
+            - { value: 'Static functions can be final.', correct: false }
+            - { value: 'Properties can be final.', correct: false }
+    -
+        question: 'Which of the following is correct? (Choose 2)'
+        answers:
+            - { value: 'A class can extend more than one class.', correct: false }
+            - { value: 'A class can implement more than one class.', correct: false }
+            - { value: 'A class can extend more than one interface.', correct: false }
+            - { value: 'A class can implement more than one interface.', correct: true }
+            - { value: 'An interface can extend more than one interface.', correct: true }
+            - { value: 'An interface can implement more than one interface.', correct: false}
+    -
+        question: 'Which of the following functions are used to escape data within the context of HTML? (Choose 2)'
+        answers:
+            - { value: 'htmlentities()', correct: true }
+            - { value: 'addslashes()', correct: false }
+            - { value: 'stripslashes()', correct: false }
+            - { value: 'strip_tags()', correct: false }
+            - { value: 'htmlspecialchars()', correct: false }
+    -
+        question: |
+                    (Type the answer) Consider the following code. Which keyword should be used in the line marked with "KEYWORD" instead
+                    of "self" to make this code work as intended?
+                    abstract class Base {
+                      protected function __construct() {}
+                      public static function create() {
+                        return new self(); // KEYWORD
+                      }
+                      abstract function action();
+                    }
+                    class Item extends Base {
+                      public function action() { echo __CLASS__; }
+                    }
+                    $item = Item::create();
+                    $item->action(); // outputs "Item"
+        answers:
+            - { value: 'static', correct: true }
+            - { value: '$this', correct: false }
+            - { value: 'parent', correct: false }
+    -
+        question: |
+                    (Type the answer) What is the output of the following code?
+                    class Number {
+                      private $v = 0;
+                      public function __construct($v) { $this->v = $v; }
+                      public function mul() {
+                        return function ($x) { return $this->v * $x; };
+                      }
+                    }
+                    $one = new Number(1);
+                    $two = new Number(2);
+                    $double = $two->mul()->bindTo($one);
+                    echo $double(5);
+        answers:
+            - { value: 5, correct: true }
+            - { value: 4, correct: false }
+            - { value: 3, correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    class C {
+                      public $x = 1;
+                      function __construct() { ++$this->x; }
+                      function __invoke() { return ++$this->x; }
+                      function __toString() { return (string) --$this->x; }
+                    }
+                    $obj = new C();
+                    echo $obj();
+        answers:
+            - { value: '0', correct: false }
+            - { value: '1', correct: false }
+            - { value: '2', correct: false }
+            - { value: '3', correct: true }
+    -
+        question: |
+                    Which line of code can be used to replace the INSERT comment in order to output "hello"?
+                    class C {
+                      public $ello = 'ello';
+                      public $c;
+                      public $m;
+                      function __construct($y) {
+                          $this->c = static function($f) {
+                            // INSERT LINE OF CODE HERE
+                          };
+                          $this->m = function() {
+                            return "h";
+                          };
+                      }
+                    }
+                    $x = new C("h");
+                    $f = $x->c;
+                    echo $f($x->m);
+        answers:
+            - { value: 'return $this->m() . "ello";', correct: false }
+            - { value: 'return $f() . "ello";', correct: true }
+            - { value: 'return "h". $this->ello;', correct: false }
+            - { value: 'return $y . "ello";', correct: false }

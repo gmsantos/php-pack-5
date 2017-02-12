@@ -1,238 +1,232 @@
 category: Data Formats
 questions:
-  -
-    question: |
-                SimpleXML provides the ability to iterate over items in an XML document, as well as access items within it
-                as if they were object properties. When creating your own classes to access data, implementing which of
-                the following would NOT achieve this goal?
-    answers:
-      - { value: '__toString', correct: true }
-      - { value: 'Iterator', correct: false }
-      - { value: '__get/__set', correct: false }
-      - { value: 'ArrayAccess', correct: false }
-
-  -
-    question: Given a PHP value, which sample shows how to convert the value to JSON?
-    answers:
-      - { value: '$string = json_encode($value);', correct: true }
-      - { value: '$string = Json::encode($value);', correct: false }
-      - { value: '$json = new Json($value); $string = $json->__toString();', correct: false }
-      - { value: '$value = (object) $value; $string = $value->__toJson();', correct: false }
-
-
-  -
-    question: |
-                Consider the following XML code:
-                <?xml version="1.0" encoding="utf-8"?>
-                  <books>
-                    <book id="1">PHP 5.5 in 42 Hours</book>
-                    <book id="2">Learning PHP 5.5 The Hard Way</book>
-                  </books>
-                Which of the following SimpleXML calls prints the name of the second book?
-                (Let $xml = simplexml_load_file("books.xml"); .)
-                (Choose 2)
-    answers:
-      - { value: 'echo $xml->books->book[2];', correct: false }
-      - { value: 'echo $xml->books->book[1];', correct: false }
-      - { value: 'echo $xml->book[1];', correct: true }
-      - { value: 'echo $xml->xpath("/books/book[@id=2]");', correct: false }
-      - { value: '$c = $xml->children(); echo $c[1];', correct: false }
-  -
-    question: What method can be used to find the tag <any> via the DOM extension?
-    answers:
-      - { value: 'getElementById()', correct: false }
-      - { value: 'getElementsByTagName()', correct: true }
-      - { value: 'getElementsByTagNameNS()', correct: false }
-      - { value: 'getElementByName()', correct: false }
-      - { value: 'findTag()', correct: false }
-  -
-    question: What DOMElement method should be used to check for availability of a non-namespaced attribute?
-    answers:
-      - { value: 'getAttributeNS()', correct: false }
-      - { value: 'getAttribute()', correct: false }
-      - { value: 'hasAttribute()', correct: true }
-      - { value: 'hasAttributeNS()', correct: true }
-  -
-    question: Which of the following is an invalid DOM save method?
-    answers:
-      - { value: 'save()', correct: false }
-      - { value: 'saveFile()', correct: true }
-      - { value: 'saveXML()', correct: false }
-      - { value: 'saveHTML()', correct: false }
-      - { value: 'saveHTMLFile()', correct: false }
-  -
-    question: Which of the following rules must every correct XML document adhere to? (Choose 2)
-    answers:
-      - { value: 'It has to be well-formed.', correct: true }
-      - { value: 'It has to be valid.', correct: true }
-      - { value: 'It has to be associated to a DTD.', correct: false }
-      - { value: 'It may only contain UTF-8 encoded characters.', correct: false }
-  -
-    question: Which one of the following XML declarations is NOT valid?
-    answers:
-      - { value: '<?xml version="1.0" ?>', correct: false }
-      - { value: '<?xml version="1.1" encoding="UTF-8" ?>', correct: false }
-      - { value: '<?xml standalone="no" ?>', correct: false }
-      - { value: '<?xml standalone="1" ?>', correct: true }
-  -
-    question: Which of the following parts must a XML document have in order to be well-formed?
-    answers:
-      - { value: 'An XML declaration', correct: false }
-      - { value: 'A root element', correct: true }
-      - { value: 'A specified encoding', correct: false }
-      - { value: 'A reference to either a DTD or an XML schema definition', correct: false }
-  -
-    question: |
-                Which of the following can be registered as
-                entry points with a SoapServer instance (choose 2):
-    answers:
-      - { value: 'A single function', correct: true }
-      - { value: 'A single method from a class', correct: false }
-      - { value: 'All methods from a class', correct: true }
-      - { value: 'All classes defined in a script', correct: false }
-  -
-    question: Which of the following statements about SOAP is NOT true?
-    answers:
-      - { value: 'SOAP is also a request-/response-based protocol.', correct: false }
-      - { value: 'SOAP can be transported using SMTP, HTTP and other protocols.', correct: false }
-      - { value: 'SOAP requires developers to use WSDL.', correct: true }
-      - { value: 'SOAP traffic via HTTP can be encrypted and compressed just like other HTTP requests.', correct: false }
-  -
-    question: What SimpleXML function is used to parse a file?
-    answers:
-      - { value: 'simplexml_load_file()', correct: true }
-      - { value: 'simplexml_load_string()', correct: false }
-      - { value: 'load()', correct: false }
-      - { value: 'loadFile()', correct: false }
-      - { value: 'loadXML()', correct: false }
-      - { value: 'None of the above.', correct: false}
-  -
-    question: |
-              The XML document below has been parsed into $xml via SimpleXML. How can the value of <foo> tag accessed?
-              <?xml version='1.0'?>
-                <document>
-                  <bar>
-                    <foo>Value</foo>
-                  </bar>
-                </document>
-    answers:
-      - { value: "$xml->bar['foo']", correct: false }
-      - { value: '$xml->bar->foo', correct: true }
-      - { value: "$xml['document']['bar']['foo']", correct: false }
-      - { value: '$xml->document->bar->foo', correct: false }
-      - { value: "$xml->getElementByName('foo');", correct: false }
-  -
-    question: What parsing methodology is utilized by the SimpleXML extension?
-    answers:
-      - { value: 'SAX', correct: false }
-      - { value: 'DOM', correct: true }
-      - { value: 'XPath', correct: false }
-      - { value: 'Push/Pull Approach', correct: false }
-      - { value: 'Expat', correct: false }
-  -
-    question: |
-      How can the id attribute of the 2nd baz element from the XML string below
-      be retrieved from the SimpleXML object found inside $xml?
-      <?xml version='1.0'?>
-        <foo>
-          <bar>
-            <baz id="1">One</baz>
-            <baz id="2">Two</baz>
-          </bar>
-        </foo>
-    answers:
-      - { value: "$xml->getElementById('2');", correct: false }
-      - { value: "$xml->foo->bar->baz[2]['id']", correct: false }
-      - { value: "$xml->foo->baz[2]['id']", correct: false }
-      - { value: "$xml->foo->bar->baz[1]['id']", correct: false }
-      - { value: "$xml->bar->baz[1]['id']", correct: true }
-  -
-    question: How can a SimpleXML object be converted to a DOM object?
-    answers:
-      - { value: 'dom_import_simplexml()', correct: true }
-      - { value: 'dom_export_simplexml()', correct: false }
-      - { value: 'simplexml_import_dom()', correct: false }
-      - { value: 'SimpleXML2Dom()', correct: false }
-      - { value: 'None of the above.', correct: false }
-  -
-    question: What is the method used to execute XPath queries in the SimpleXML extension?
-    answers:
-      - { value: 'xpathQuery()', correct: false }
-      - { value: 'xpath()', correct: true }
-      - { value: 'simpleXMLXpath()', correct: false }
-      - { value: 'query()', correct: false }
-      - { value: 'evaluate()', correct: false }
-  -
-    question: Which of the following statements are FALSE?
-    answers:
-      - { value: 'SimpleXML allows removal of attributes.', correct: false }
-      - { value: 'SimpleXML allows addition of new attributes.', correct: false }
-      - { value: 'SimpleXML allows removal of nodes.', correct: false }
-      - { value: 'SimpleXML allows addition of new nodes.', correct: false }
-      - { value: 'None of the above', correct: true }
-  -
-    question: What DOM method is used to load HTML files?
-    answers:
-      - { value: 'load()', correct: false }
-      - { value: 'loadXML()', correct: false }
-      - { value: 'loadHTML()', correct: false }
-      - { value: 'loadHTMLFile()', correct: true }
-
-  -
-    question: Given a JSON-encoded string, which code sample correctly indicates how to decode the string to native PHP values?
-    answers:
-      - { value: '$json = new Json($jsonValue); $value = $json->decode();', correct: false }
-      - { value: '$value = Json::decode($jsonValue);', correct: false }
-      - { value: '$value = json_decode($jsonValue);', correct: true }
-      - { value: '$value = Json::fromJson($jsonValue);', correct: false }
-  -
-    question: Which of the following PHP values may NOT be encoded to a JavaScript literal using PHP's ext/json capabilities?
-    answers:
-      - { value: 'Hello, world!', correct: false }
-      - { value: 'function(){ alert("Hello, world!"); }', correct: true }
-      - { value: "array('Hello, world!')", correct: false }
-      - { value: "array('message' => 'Hello, world!')", correct: false }
-  -
-    question: Which of the following will NOT instantiate a DateTime object with the current timestamp?
-    answers:
-      - { value: '$date = new DateTime();', correct: false }
-      - { value: "$date = new DateTime('@' . time());", correct: false }
-      - { value: "$date = new DateTime('now');", correct: false }
-      - { value: 'D. $date = new DateTime(time());', correct: true }
-  -
-    question: |
-                Given a DateTime object that is set to the first second of the year 2014, which of the following samples will
-                correctly return a date in the format '2014-01-01 00:00:01'?
-    answers:
-      - { value: "$datetime->format('%Y-%m-%d %h:%i:%s')", correct: false }
-      - { value: "$datetime->format('%Y-%m-%d %h:%i:%s', array('year', 'month', 'day', 'hour', 'minute', 'second'))", correct: false }
-      - { value: "$datetime->format('Y-m-d H:i:s')", correct: true }
-      - { value: "$date = date('Y-m-d H:i:s', $datetime);", correct: false }
-  -
-    question: |
-                Given the following DateTime objects, what can you use to compare the two dates and indicate that $date2
-                is the later of the two dates?
-                $date1 = new DateTime('2014-02-03');
-                $date2 = new DateTime('2014-03-02');
-    answers:
-      - { value: '$date2 > $date1', correct: true }
-      - { value: '$date2 < $date1', correct: false }
-      - { value: '$date1->diff($date2) < 0', correct: false }
-      - { value: '$date1->diff($date2) > 0', correct: false }
-  -
-    question: |
-                Given the following DateTime object, which sample will NOT alter the date to the value '2014- 02-15'?
-                $date = new DateTime('2014-03-15');
-    answers:
-      - { value: "$date->sub(new DateInterval('P1M'));", correct: false }
-      - { value: "$date->setDate(2014, 2, 15);", correct: false }
-      - { value: "$date->modify('-1 month');", correct: false }
-      - { value: "$date->diff(new DateInterval('-P1M'));", correct: true }
-
-  -
-    question: (Type the answer) Which DOMElement property provides a reference to the list of the element's children?
-    answers:
-      - { value: "childNodes", correct: true }
-      - { value: "childs", correct: false }
-      - { value: "nodes", correct: false }
-      
+    -
+        question: |
+                    SimpleXML provides the ability to iterate over items in an XML document, as well as access items within it
+                    as if they were object properties. When creating your own classes to access data, implementing which of
+                    the following would NOT achieve this goal?
+        answers:
+            - { value: '__toString', correct: true }
+            - { value: 'Iterator', correct: false }
+            - { value: '__get/__set', correct: false }
+            - { value: 'ArrayAccess', correct: false }
+    -
+        question: 'Given a PHP value, which sample shows how to convert the value to JSON?'
+        answers:
+            - { value: '$string = json_encode($value);', correct: true }
+            - { value: '$string = Json::encode($value);', correct: false }
+            - { value: '$json = new Json($value); $string = $json->__toString();', correct: false }
+            - { value: '$value = (object) $value; $string = $value->__toJson();', correct: false }
+    -
+        question: |
+                  Consider the following XML code:
+                  <?xml version="1.0" encoding="utf-8"?>
+                    <books>
+                      <book id="1">PHP 5.5 in 42 Hours</book>
+                      <book id="2">Learning PHP 5.5 The Hard Way</book>
+                    </books>
+                  Which of the following SimpleXML calls prints the name of the second book?
+                  (Let $xml = simplexml_load_file("books.xml"); .)
+                  (Choose 2)
+        answers:
+            - { value: 'echo $xml->books->book[2];', correct: false }
+            - { value: 'echo $xml->books->book[1];', correct: false }
+            - { value: 'echo $xml->book[1];', correct: true }
+            - { value: 'echo $xml->xpath("/books/book[@id=2]");', correct: false }
+            - { value: '$c = $xml->children(); echo $c[1];', correct: false }
+    -
+        question: 'What method can be used to find the tag <any> via the DOM extension?'
+        answers:
+            - { value: 'getElementById()', correct: false }
+            - { value: 'getElementsByTagName()', correct: true }
+            - { value: 'getElementsByTagNameNS()', correct: false }
+            - { value: 'getElementByName()', correct: false }
+            - { value: 'findTag()', correct: false }
+    -
+        question: 'What DOMElement method should be used to check for availability of a non-namespaced attribute?'
+        answers:
+            - { value: 'getAttributeNS()', correct: false }
+            - { value: 'getAttribute()', correct: false }
+            - { value: 'hasAttribute()', correct: true }
+            - { value: 'hasAttributeNS()', correct: true }
+    -
+        question: 'Which of the following is an invalid DOM save method?'
+        answers:
+            - { value: 'save()', correct: false }
+            - { value: 'saveFile()', correct: true }
+            - { value: 'saveXML()', correct: false }
+            - { value: 'saveHTML()', correct: false }
+            - { value: 'saveHTMLFile()', correct: false }
+    -
+        question: 'Which of the following rules must every correct XML document adhere to? (Choose 2)'
+        answers:
+            - { value: 'It has to be well-formed.', correct: true }
+            - { value: 'It has to be valid.', correct: true }
+            - { value: 'It has to be associated to a DTD.', correct: false }
+            - { value: 'It may only contain UTF-8 encoded characters.', correct: false }
+    -
+        question: 'Which one of the following XML declarations is NOT valid?'
+        answers:
+            - { value: '<?xml version="1.0" ?>', correct: false }
+            - { value: '<?xml version="1.1" encoding="UTF-8" ?>', correct: false }
+            - { value: '<?xml standalone="no" ?>', correct: false }
+            - { value: '<?xml standalone="1" ?>', correct: true }
+    -
+        question: 'Which of the following parts must a XML document have in order to be well-formed?'
+        answers:
+            - { value: 'An XML declaration', correct: false }
+            - { value: 'A root element', correct: true }
+            - { value: 'A specified encoding', correct: false }
+            - { value: 'A reference to either a DTD or an XML schema definition', correct: false }
+    -
+        question: |
+                    Which of the following can be registered as
+                    entry points with a SoapServer instance (choose 2):
+        answers:
+            - { value: 'A single function', correct: true }
+            - { value: 'A single method from a class', correct: false }
+            - { value: 'All methods from a class', correct: true }
+            - { value: 'All classes defined in a script', correct: false }
+    -
+        question: 'Which of the following statements about SOAP is NOT true?'
+        answers:
+            - { value: 'SOAP is also a request-/response-based protocol.', correct: false }
+            - { value: 'SOAP can be transported using SMTP, HTTP and other protocols.', correct: false }
+            - { value: 'SOAP requires developers to use WSDL.', correct: true }
+            - { value: 'SOAP traffic via HTTP can be encrypted and compressed just like other HTTP requests.', correct: false }
+    -
+        question: 'What SimpleXML function is used to parse a file?'
+        answers:
+            - { value: 'simplexml_load_file()', correct: true }
+            - { value: 'simplexml_load_string()', correct: false }
+            - { value: 'load()', correct: false }
+            - { value: 'loadFile()', correct: false }
+            - { value: 'loadXML()', correct: false }
+            - { value: 'None of the above.', correct: false}
+    -
+        question: |
+                  The XML document below has been parsed into $xml via SimpleXML. How can the value of <foo> tag accessed?
+                  <?xml version='1.0'?>
+                    <document>
+                      <bar>
+                        <foo>Value</foo>
+                      </bar>
+                    </document>
+        answers:
+            - { value: "$xml->bar['foo']", correct: false }
+            - { value: '$xml->bar->foo', correct: true }
+            - { value: "$xml['document']['bar']['foo']", correct: false }
+            - { value: '$xml->document->bar->foo', correct: false }
+            - { value: "$xml->getElementByName('foo');", correct: false }
+    -
+        question: 'What parsing methodology is utilized by the SimpleXML extension?'
+        answers:
+            - { value: 'SAX', correct: false }
+            - { value: 'DOM', correct: true }
+            - { value: 'XPath', correct: false }
+            - { value: 'Push/Pull Approach', correct: false }
+            - { value: 'Expat', correct: false }
+    -
+        question: |
+                  How can the id attribute of the 2nd baz element from the XML string below
+                  be retrieved from the SimpleXML object found inside $xml?
+                  <?xml version='1.0'?>
+                    <foo>
+                      <bar>
+                        <baz id="1">One</baz>
+                        <baz id="2">Two</baz>
+                      </bar>
+                    </foo>
+        answers:
+            - { value: "$xml->getElementById('2');", correct: false }
+            - { value: "$xml->foo->bar->baz[2]['id']", correct: false }
+            - { value: "$xml->foo->baz[2]['id']", correct: false }
+            - { value: "$xml->foo->bar->baz[1]['id']", correct: false }
+            - { value: "$xml->bar->baz[1]['id']", correct: true }
+    -
+        question: 'How can a SimpleXML object be converted to a DOM object?'
+        answers:
+            - { value: 'dom_import_simplexml()', correct: true }
+            - { value: 'dom_export_simplexml()', correct: false }
+            - { value: 'simplexml_import_dom()', correct: false }
+            - { value: 'SimpleXML2Dom()', correct: false }
+            - { value: 'None of the above.', correct: false }
+    -
+        question: 'What is the method used to execute XPath queries in the SimpleXML extension?'
+        answers:
+            - { value: 'xpathQuery()', correct: false }
+            - { value: 'xpath()', correct: true }
+            - { value: 'simpleXMLXpath()', correct: false }
+            - { value: 'query()', correct: false }
+            - { value: 'evaluate()', correct: false }
+    -
+        question: 'Which of the following statements are FALSE?'
+        answers:
+            - { value: 'SimpleXML allows removal of attributes.', correct: false }
+            - { value: 'SimpleXML allows addition of new attributes.', correct: false }
+            - { value: 'SimpleXML allows removal of nodes.', correct: false }
+            - { value: 'SimpleXML allows addition of new nodes.', correct: false }
+            - { value: 'None of the above', correct: true }
+    -
+        question: 'What DOM method is used to load HTML files?'
+        answers:
+            - { value: 'load()', correct: false }
+            - { value: 'loadXML()', correct: false }
+            - { value: 'loadHTML()', correct: false }
+            - { value: 'loadHTMLFile()', correct: true }
+    -
+        question: 'Given a JSON-encoded string, which code sample correctly indicates how to decode the string to native PHP values?'
+        answers:
+            - { value: '$json = new Json($jsonValue); $value = $json->decode();', correct: false }
+            - { value: '$value = Json::decode($jsonValue);', correct: false }
+            - { value: '$value = json_decode($jsonValue);', correct: true }
+            - { value: '$value = Json::fromJson($jsonValue);', correct: false }
+    -
+        question: "Which of the following PHP values may NOT be encoded to a JavaScript literal using PHP's ext/json capabilities?"
+        answers:
+            - { value: 'Hello, world!', correct: false }
+            - { value: 'function(){ alert("Hello, world!"); }', correct: true }
+            - { value: "array('Hello, world!')", correct: false }
+            - { value: "array('message' => 'Hello, world!')", correct: false }
+    -
+        question: 'Which of the following will NOT instantiate a DateTime object with the current timestamp?'
+        answers:
+            - { value: '$date = new DateTime();', correct: false }
+            - { value: "$date = new DateTime('@' . time());", correct: false }
+            - { value: "$date = new DateTime('now');", correct: false }
+            - { value: 'D. $date = new DateTime(time());', correct: true }
+    -
+        question: |
+                    Given a DateTime object that is set to the first second of the year 2014, which of the following samples will
+                    correctly return a date in the format '2014-01-01 00:00:01'?
+        answers:
+            - { value: "$datetime->format('%Y-%m-%d %h:%i:%s')", correct: false }
+            - { value: "$datetime->format('%Y-%m-%d %h:%i:%s', array('year', 'month', 'day', 'hour', 'minute', 'second'))", correct: false }
+            - { value: "$datetime->format('Y-m-d H:i:s')", correct: true }
+            - { value: "$date = date('Y-m-d H:i:s', $datetime);", correct: false }
+    -
+        question: |
+                    Given the following DateTime objects, what can you use to compare the two dates and indicate that $date2
+                    is the later of the two dates?
+                    $date1 = new DateTime('2014-02-03');
+                    $date2 = new DateTime('2014-03-02');
+        answers:
+            - { value: '$date2 > $date1', correct: true }
+            - { value: '$date2 < $date1', correct: false }
+            - { value: '$date1->diff($date2) < 0', correct: false }
+            - { value: '$date1->diff($date2) > 0', correct: false }
+    -
+        question: |
+                    Given the following DateTime object, which sample will NOT alter the date to the value '2014- 02-15'?
+                    $date = new DateTime('2014-03-15');
+        answers:
+            - { value: "$date->sub(new DateInterval('P1M'));", correct: false }
+            - { value: "$date->setDate(2014, 2, 15);", correct: false }
+            - { value: "$date->modify('-1 month');", correct: false }
+            - { value: "$date->diff(new DateInterval('-P1M'));", correct: true }
+    -
+        question: (Type the answer) Which DOMElement property provides a reference to the list of the element's children?
+        answers:
+            - { value: "childNodes", correct: true }
+            - { value: "childs", correct: false }
+            - { value: "nodes", correct: false }

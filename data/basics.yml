@@ -3,26 +3,25 @@ questions:
     -
         question: 'Which of the following tags are an acceptable way to begin a PHP Code block?'
         answers:
-            - {value: '<SCRIPT LANGUAGE="php">',         correct: true}
-            - {value: '<!',                                                   correct: true}
-            - {value: '<%',                                                 correct: true}
-            - {value: '<?',                                                  correct: true}
-
+            - {value: '<SCRIPT LANGUAGE="php">', correct: true}
+            - {value: '<!', correct: false}
+            - {value: '<%', correct: true}
+            - {value: '<?', correct: true}
     -
         question: 'Which of the following are valid PHP variables?'
         answers:
-            - {value: '@$foo',      correct: true}
+            - {value: '@$foo', correct: true}
             - {value: '&$variable', correct: true}
-            - {value: '${0x0}',       correct: true}
-            - {value: '$0x0',          correct: false}
+            - {value: '${0x0}', correct: true}
+            - {value: '$0x0', correct: false}
     -
         question: 'What is the best way to iterate and modify every element of an array using PHP 5?'
         answers:
-            - {value: You cannot modify an array during iteration.,         correct: false}
-            - {value: 'for($i = 0; $i < count($array); $i++) { /* ... * / }',    correct: false}
-            - {value: 'foreach($array as $key => &$val) { /* ... * / }',      correct: true}
-            - {value: 'foreach($array as $key => $val) { /* ... * / }',        correct: false}
-            - {value: 'while(list($key, $val) = each($array)) { /* ... * / }',  correct: false}
+            - {value: 'You cannot modify an array during iteration.', correct: false}
+            - {value: 'for($i = 0; $i < count($array); $i++) { /* ... * / }', correct: false}
+            - {value: 'foreach($array as $key => &$val) { /* ... * / }', correct: true}
+            - {value: 'foreach($array as $key => $val) { /* ... * / }', correct: false}
+            - {value: 'while(list($key, $val) = each($array)) { /* ... * / }', correct: false}
     -
         question: |
                        What is the output of the following PHP code?
@@ -31,11 +30,11 @@ questions:
                        print $array[$array[FOO]] * $array["FOO"];
 
         answers:
-            - {value: FOO,  correct: false}
-            - {value: 100,    correct: false}
-            - {value: 200,    correct: true}
-            - {value: 20,      correct: false}
-            - {value: 10,      correct: false}
+            - {value: FOO, correct: false}
+            - {value: 100, correct: false}
+            - {value: 200, correct: true}
+            - {value: 20, correct: false}
+            - {value: 10, correct: false}
     -
         question: |
                        What is the output of the following PHP script?
@@ -65,306 +64,291 @@ questions:
             - {value: '22', correct: false}
             - {value: '$a is an invalid value', correct: false}
             - {value: '2', correct: false}
-  -
-    question: Which of the following are valid identifiers? (Choose 3)
-    answers:
-      - { value: 'function 4You() { }', correct: false }
-      - { value: 'function _4You() { }', correct: true }
-      - { value: 'function object() { }', correct: true }
-      - { value: '$1 = "Hello";', correct: false }
-      - { value: '$_1 = "Hello World";', correct: true }
-
-
-  -
-    question: What is the difference between "print" and "echo"?
-    answers:
-      - { value: 'There is no difference.', correct: false }
-      - { value: 'Print has a return value, echo does not', correct: true }
-      - { value: 'Echo has a return value, print does not', correct: false }
-      - { value: 'Print buffers the output, while echo does not', correct: false }
-      - { value: 'None of the above', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                echo "1" + 2 * "0x02";
-    answers:
-      - { value: '1', correct: false }
-      - { value: '3', correct: false }
-      - { value: '5', correct: true }
-      - { value: '20', correct: false }
-      - { value: '7', correct: false }
-  -
-    question: |
-                What is the result of the following bitwise operation in PHP?
-                1 ^ 2
-    answers:
-      - { value: '1', correct: false }
-      - { value: '3', correct: true }
-      - { value: '2', correct: false }
-      - { value: '4', correct: false }
-      - { value: '-1', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                echo "22" + "0.2", 23 . 1;
-    answers:
-      - { value: '220.2231', correct: false }
-      - { value: '22.2231', correct: true }
-      - { value: '22.2,231', correct: false }
-      - { value: '56.2', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                $first = "second";
-                $second = "first";
-                echo $$$first;
-    answers:
-      - { value: '"first"', correct: false }
-      - { value: '"second"', correct: true }
-      - { value: 'an empty string', correct: false }
-      - { value: 'an error', correct: false }
-
-  -
-    question: What does the __FILE__ constant contain?
-    answers:
-      - { value: 'The filename of the current script.', correct: false }
-      - { value: 'The full path to the current script.', correct: true }
-      - { value: 'The URL of the request made.', correct: false }
-      - { value: 'The path to the main script.', correct: false }
-
-
-  -
-    question: What purpose do namespaces fulfill?
-    answers:
-      - { value: 'Encapsulation', correct: true }
-      - { value: 'Alternative to classes', correct: false }
-      - { value: 'Improved performance', correct: false }
-      - { value: 'All of the above', correct: false }
-  -
-    question: When would you use classes and when would you use namespaces?
-    answers:
-      - { value: 'Use classes to encapsulate code and represent objects, and namespaces to avoid symbol name collisions', correct: true }
-      - { value: 'Use classes for performance-sensitive code, and namespaces when readability matters more', correct: false }
-      - { value: 'Use namespaces for performance-sensitive code, and classes when readability matters more', correct: false }
-      - { value: 'Always use them; namespaces are always superior to classes', correct: false }
-
-
-  -
-    question: What will an opcode cache ALWAYS automatically improve?
-    answers:
-      - { value: 'Running time of a loop in a PHP script', correct: false }
-      - { value: 'Efficiency of HTML markup generated by a PHP script', correct: false }
-      - { value: 'Execution speed of a PHP script', correct: false }
-      - { value: 'Memory footprint of a PHP script', correct: false }
-      - { value: 'None of the above', correct: true }
-  -
-    question: What is cached by an opcode cache?
-    answers:
-      - { value: 'Compiled PHP code', correct: true }
-      - { value: 'Native PHP extensions', correct: false }
-      - { value: 'Data sent to the client', correct: false }
-      - { value: 'Data received from the database', correct: false }
-  -
-    question: Which php.ini setting is usually required to use an opcode cache?
-    answers:
-      - { value: 'extension', correct: false }
-      - { value: 'zend_extension', correct: true }
-      - { value: 'optimizer', correct: false }
-      - { value: 'dl', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                var_dump(boolval(-1));
-    answers:
-      - { value: 'bool(true)', correct: true }
-      - { value: 'bool(false)', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                var_dump(boolval([]));
-    answers:
-      - { value: 'bool(true)', correct: false }
-      - { value: 'bool(false)', correct: true }
-  -
-    question: |
-                What is the output of the following code?
-                var_dump(boolval(new StdClass()));
-    answers:
-      - { value: 'bool(true)', correct: true }
-      - { value: 'bool(false)', correct: false }
-
-
-  -
-    question: |
-                What is the output of the following code?
-                for ($i = 0; $i < 1.02; $i += 0.17) {
-                  $a[$i] = $i;
-                }
-                echo count($a);
-    answers:
-      - { value: '0', correct: false }
-      - { value: '1', correct: true }
-      - { value: '2', correct: false }
-      - { value: '6', correct: false }
-      - { value: '7', correct: false }
-
-  -
-    question: |
-                What will the following function call print?
-                printf('%010.6f', 22);
-    answers:
-      - { value: '22', correct: false }
-      - { value: '22.00', correct: false }
-      - { value: '022.000000', correct: true }
-      - { value: '22.000000', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                echo 0x33, ' monkeys sit on ', 011, ' trees.';
-    answers:
-      - { value: '33 monkeys sit on 11 trees.', correct: false }
-      - { value: '51 monkeys sit on 9 trees.', correct: true }
-      - { value: 'monkeys sit on trees.', correct: false }
-      - { value: '0x33 monkeys sit on 011 trees.', correct: false }
-
-  -
-    question: |
-                (Type the answer) Consider the following code:
-                $value1 = 1;
-                $result = $value1 *** $value2;
-                Which operator needs to be used instead of *** so that $result equals $value1 if $value1 evaluates to true,
-                and equals $value2 otherwise? Just state the operator as it would be required in the code.
-    answers:
-      - { value: '?:', correct: true }
-      - { value: '?', correct: false }
-      - { value: 'insteadof', correct: false }
-
-  -
-    question: |
-                What is the output of the following code?
-                echo '1' . (print '2') + 3;
-    answers:
-      - { value: '123', correct: false }
-      - { value: '213', correct: false }
-      - { value: '142', correct: false }
-      - { value: '214', correct: true }
-      - { value: 'Syntax error', correct: false }
-  -
-    question: |
-                What is the output of the following code?
-                $a = 3;
-                switch ($a) {
-                  case 1: echo 'one'; break;
-                  case 2: echo 'two'; break;
-                  default: echo 'four'; break;
-                  case 3: echo 'three'; break;
-                }
-    answers:
-      - { value: 'one', correct: false }
-      - { value: 'two', correct: false }
-      - { value: 'three', correct: true }
-      - { value: 'four', correct: false }
-  -
-    question: What is "instanceof" an example of?
-    answers:
-      - { value: 'a boolean', correct: false }
-      - { value: 'an operator', correct: true }
-      - { value: 'a function', correct: false }
-      - { value: 'a language construct', correct: false }
-      - { value: 'a class magic', correct: false }
-  -
-    question: Which of the following may be used in conjunction with CASE inside a SWITCH statement?
-    answers:
-      - { value: 'A scalar', correct: false }
-      - { value: 'An expression', correct: false }
-      - { value: 'A boolean', correct: false }
-      - { value: 'All of the above', correct: true }
-  -
-    question: |
-                What is the output of the following code?
-                $a = 'a'; $b = 'b';
-                echo isset($c) ? $a.$b.$c : ($c = 'c').'d';
-    answers:
-      - { value: 'abc', correct: false }
-      - { value: 'cd', correct: true }
-      - { value: '0d', correct: false }
-
-  -
-    question: Which of these elements can be encapsulated by namespaces and made accessible from the outside?
-    answers:
-      - { value: 'Only classes', correct: false }
-      - { value: 'Classes, functions and constants', correct: true }
-      - { value: 'Classes, functions, constants and variables', correct: false }
-  -
-    question: |
-            You'd like to use the class MyDBConnection that's defined in the
-            MyGreatFramework\MyGreatDatabaseAbstractionLayer namespace,
-            but you want to minimize *as much as possible* the length
-            of the class name you have to type. What would you do?
-    answers:
-      - { value: 'Import the MyGreatFramework namespace', correct: false }
-      - { value: 'Import the MyGreatFramework\MyGreatDatabaseAbstractionLayer namespace', correct: false }
-      - { value: 'Alias MyGreatFramework\MyGreatDatabaseAbstractionLayer\MyDBConnection to a shorter name', correct: true }
-      - { value: 'Alias MyGreatFramework\MyGreatDatabaseAbstractionLayer to a shorter name', correct: false }
-  -
-    question: How should you track errors on your production website?
-    answers:
-      - { value: 'Enabling display_errors', correct: false }
-      - { value: 'Enabling log_errors', correct: true }
-      - { value: 'Having a site-wide exception handler', correct: false }
-      - { value: 'Setting error_reporting to E_ALL & ~E_NOTICE', correct: false }
-  -
-    question: |
-                What would be the output of the following code?
-                namespace MyFramework\DB;
-                class MyClass {
-                  static function myName() {
-                    return __METHOD__;
-                  }
-                }
-                print MyClass::myName();
-    answers:
-      - { value: 'MyFramework\DB\myName', correct: false }
-      - { value: 'MyFramework\DB\MyClass\myName', correct: false }
-      - { value: 'MyFramework\DB\MyClass::myName', correct: true }
-      - { value: 'MyClass::myName', correct: false }
-  -
-    question: |
-                Which of the following methods are available to limit the amount of resources available to PHP through
-                php.ini? (Choose 2)
-    answers:
-      - { value: 'Limit the amount of memory a script can consume', correct: true }
-      - { value: 'Limit the total amount of memory PHP uses on the entire server', correct: false }
-      - { value: 'Limit the maximum execution time of a script', correct: true }
-      - { value: 'Limit the maximum number of concurrent PHP processes', correct: false }
-      - { value: 'Limit the maximum number of concurrent PHP threads', correct: false }
-  -
-    question: |
-                Consider the following two files. When you run test.php, what would the output look like?
-                test.php:
-                include "MyString.php";
-                print ",";
-                print strlen("Hello world!");
-                MyString.php:
-                namespace MyFramework\String;
-                function strlen($str)
-                {
-                  return \strlen($str)*2; // return double the string length
-                }
-                print strlen("Hello world!")
-    answers:
-      - { value: '12,12', correct: false }
-      - { value: '12,24', correct: false }
-      - { value: '24,12', correct: true }
-      - { value: '24,24', correct: false }
-      - { value: 'PHP Fatal error: Cannot redeclare strlen()', correct: false }
-
-
-  -
-    question: |
-                (Type the answer) Which value will be assigned to the key 0 in this example?
-                $foo = array(true, '0' => false, false => true);
-    answers:
-      - { value: 'true', correct: true }
-      - { value: 'false', correct: false }
-      - { value: '1', correct: false }
+    -
+        question: 'Which of the following are valid identifiers? (Choose 3)'
+        answers:
+            - { value: 'function 4You() { }', correct: false }
+            - { value: 'function _4You() { }', correct: true }
+            - { value: 'function object() { }', correct: true }
+            - { value: '$1 = "Hello";', correct: false }
+            - { value: '$_1 = "Hello World";', correct: true }
+    -
+        question: 'What is the difference between "print" and "echo"?'
+        answers:
+            - { value: 'There is no difference.', correct: false }
+            - { value: 'Print has a return value, echo does not', correct: true }
+            - { value: 'Echo has a return value, print does not', correct: false }
+            - { value: 'Print buffers the output, while echo does not', correct: false }
+            - { value: 'None of the above', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    echo "1" + 2 * "0x02";
+        answers:
+            - { value: '1', correct: false }
+            - { value: '3', correct: false }
+            - { value: '5', correct: true }
+            - { value: '20', correct: false }
+            - { value: '7', correct: false }
+    -
+        question: |
+                    What is the result of the following bitwise operation in PHP?
+                    1 ^ 2
+        answers:
+            - { value: '1', correct: false }
+            - { value: '3', correct: true }
+            - { value: '2', correct: false }
+            - { value: '4', correct: false }
+            - { value: '-1', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    echo "22" + "0.2", 23 . 1;
+        answers:
+            - { value: '220.2231', correct: false }
+            - { value: '22.2231', correct: true }
+            - { value: '22.2,231', correct: false }
+            - { value: '56.2', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    $first = "second";
+                    $second = "first";
+                    echo $$$first;
+        answers:
+            - { value: '"first"', correct: false }
+            - { value: '"second"', correct: true }
+            - { value: 'an empty string', correct: false }
+            - { value: 'an error', correct: false }
+    -
+        question: What does the __FILE__ constant contain?
+        answers:
+            - { value: 'The filename of the current script.', correct: false }
+            - { value: 'The full path to the current script.', correct: true }
+            - { value: 'The URL of the request made.', correct: false }
+            - { value: 'The path to the main script.', correct: false }
+    -
+        question: What purpose do namespaces fulfill?
+        answers:
+            - { value: 'Encapsulation', correct: true }
+            - { value: 'Alternative to classes', correct: false }
+            - { value: 'Improved performance', correct: false }
+            - { value: 'All of the above', correct: false }
+    -
+        question: When would you use classes and when would you use namespaces?
+        answers:
+            - { value: 'Use classes to encapsulate code and represent objects, and namespaces to avoid symbol name collisions', correct: true }
+            - { value: 'Use classes for performance-sensitive code, and namespaces when readability matters more', correct: false }
+            - { value: 'Use namespaces for performance-sensitive code, and classes when readability matters more', correct: false }
+            - { value: 'Always use them; namespaces are always superior to classes', correct: false }
+    -
+        question: What will an opcode cache ALWAYS automatically improve?
+        answers:
+            - { value: 'Running time of a loop in a PHP script', correct: false }
+            - { value: 'Efficiency of HTML markup generated by a PHP script', correct: false }
+            - { value: 'Execution speed of a PHP script', correct: false }
+            - { value: 'Memory footprint of a PHP script', correct: false }
+            - { value: 'None of the above', correct: true }
+    -
+        question: What is cached by an opcode cache?
+        answers:
+            - { value: 'Compiled PHP code', correct: true }
+            - { value: 'Native PHP extensions', correct: false }
+            - { value: 'Data sent to the client', correct: false }
+            - { value: 'Data received from the database', correct: false }
+    -
+        question: Which php.ini setting is usually required to use an opcode cache?
+        answers:
+            - { value: 'extension', correct: false }
+            - { value: 'zend_extension', correct: true }
+            - { value: 'optimizer', correct: false }
+            - { value: 'dl', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    var_dump(boolval(-1));
+        answers:
+            - { value: 'bool(true)', correct: true }
+            - { value: 'bool(false)', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    var_dump(boolval([]));
+        answers:
+            - { value: 'bool(true)', correct: false }
+            - { value: 'bool(false)', correct: true }
+    -
+        question: |
+                    What is the output of the following code?
+                    var_dump(boolval(new StdClass()));
+        answers:
+            - { value: 'bool(true)', correct: true }
+            - { value: 'bool(false)', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    for ($i = 0; $i < 1.02; $i += 0.17) {
+                      $a[$i] = $i;
+                    }
+                    echo count($a);
+        answers:
+            - { value: '0', correct: false }
+            - { value: '1', correct: true }
+            - { value: '2', correct: false }
+            - { value: '6', correct: false }
+            - { value: '7', correct: false }
+    -
+        question: |
+                    What will the following function call print?
+                    printf('%010.6f', 22);
+        answers:
+            - { value: '22', correct: false }
+            - { value: '22.00', correct: false }
+            - { value: '022.000000', correct: true }
+            - { value: '22.000000', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    echo 0x33, ' monkeys sit on ', 011, ' trees.';
+        answers:
+            - { value: '33 monkeys sit on 11 trees.', correct: false }
+            - { value: '51 monkeys sit on 9 trees.', correct: true }
+            - { value: 'monkeys sit on trees.', correct: false }
+            - { value: '0x33 monkeys sit on 011 trees.', correct: false }
+    -
+        question: |
+                    (Type the answer) Consider the following code:
+                    $value1 = 1;
+                    $result = $value1 *** $value2;
+                    Which operator needs to be used instead of *** so that $result equals $value1 if $value1 evaluates to true,
+                    and equals $value2 otherwise? Just state the operator as it would be required in the code.
+        answers:
+            - { value: '?:', correct: true }
+            - { value: '?', correct: false }
+            - { value: 'insteadof', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    echo '1' . (print '2') + 3;
+        answers:
+            - { value: '123', correct: false }
+            - { value: '213', correct: false }
+            - { value: '142', correct: false }
+            - { value: '214', correct: true }
+            - { value: 'Syntax error', correct: false }
+    -
+        question: |
+                    What is the output of the following code?
+                    $a = 3;
+                    switch ($a) {
+                      case 1: echo 'one'; break;
+                      case 2: echo 'two'; break;
+                      default: echo 'four'; break;
+                      case 3: echo 'three'; break;
+                    }
+        answers:
+          - { value: 'one', correct: false }
+          - { value: 'two', correct: false }
+          - { value: 'three', correct: true }
+          - { value: 'four', correct: false }
+    -
+        question: 'What is "instanceof" an example of?'
+        answers:
+            - { value: 'a boolean', correct: false }
+            - { value: 'an operator', correct: true }
+            - { value: 'a function', correct: false }
+            - { value: 'a language construct', correct: false }
+            - { value: 'a class magic', correct: false }
+    -
+        question: 'Which of the following may be used in conjunction with CASE inside a SWITCH statement?'
+        answers:
+            - { value: 'A scalar', correct: false }
+            - { value: 'An expression', correct: false }
+            - { value: 'A boolean', correct: false }
+            - { value: 'All of the above', correct: true }
+    -
+        question: |
+                    What is the output of the following code?
+                    $a = 'a'; $b = 'b';
+                    echo isset($c) ? $a.$b.$c : ($c = 'c').'d';
+        answers:
+            - { value: 'abc', correct: false }
+            - { value: 'cd', correct: true }
+            - { value: '0d', correct: false }
+    -
+        question: 'Which of these elements can be encapsulated by namespaces and made accessible from the outside?'
+        answers:
+            - { value: 'Only classes', correct: false }
+            - { value: 'Classes, functions and constants', correct: true }
+            - { value: 'Classes, functions, constants and variables', correct: false }
+    -
+        question: |
+                You'd like to use the class MyDBConnection that's defined in the
+                MyGreatFramework\MyGreatDatabaseAbstractionLayer namespace,
+                but you want to minimize *as much as possible* the length
+                of the class name you have to type. What would you do?
+        answers:
+            - { value: 'Import the MyGreatFramework namespace', correct: false }
+            - { value: 'Import the MyGreatFramework\MyGreatDatabaseAbstractionLayer namespace', correct: false }
+            - { value: 'Alias MyGreatFramework\MyGreatDatabaseAbstractionLayer\MyDBConnection to a shorter name', correct: true }
+            - { value: 'Alias MyGreatFramework\MyGreatDatabaseAbstractionLayer to a shorter name', correct: false }
+    -
+        question: 'How should you track errors on your production website?'
+        answers:
+            - { value: 'Enabling display_errors', correct: false }
+            - { value: 'Enabling log_errors', correct: true }
+            - { value: 'Having a site-wide exception handler', correct: false }
+            - { value: 'Setting error_reporting to E_ALL & ~E_NOTICE', correct: false }
+    -
+        question: |
+                    What would be the output of the following code?
+                    namespace MyFramework\DB;
+                    class MyClass {
+                      static function myName() {
+                        return __METHOD__;
+                      }
+                    }
+                    print MyClass::myName();
+        answers:
+            - { value: 'MyFramework\DB\myName', correct: false }
+            - { value: 'MyFramework\DB\MyClass\myName', correct: false }
+            - { value: 'MyFramework\DB\MyClass::myName', correct: true }
+            - { value: 'MyClass::myName', correct: false }
+    -
+        question: |
+                    Which of the following methods are available to limit the amount of resources available to PHP through
+                    php.ini? (Choose 2)
+        answers:
+            - { value: 'Limit the amount of memory a script can consume', correct: true }
+            - { value: 'Limit the total amount of memory PHP uses on the entire server', correct: false }
+            - { value: 'Limit the maximum execution time of a script', correct: true }
+            - { value: 'Limit the maximum number of concurrent PHP processes', correct: false }
+            - { value: 'Limit the maximum number of concurrent PHP threads', correct: false }
+    -
+        question: |
+                    Consider the following two files. When you run test.php, what would the output look like?
+                    test.php:
+                    include "MyString.php";
+                    print ",";
+                    print strlen("Hello world!");
+                    MyString.php:
+                    namespace MyFramework\String;
+                    function strlen($str)
+                    {
+                      return \strlen($str)*2; // return double the string length
+                    }
+                    print strlen("Hello world!")
+        answers:
+            - { value: '12,12', correct: false }
+            - { value: '12,24', correct: false }
+            - { value: '24,12', correct: true }
+            - { value: '24,24', correct: false }
+            - { value: 'PHP Fatal error: Cannot redeclare strlen()', correct: false }
+    -
+        question: |
+                    (Type the answer) Which value will be assigned to the key 0 in this example?
+                    $foo = array(true, '0' => false, false => true);
+        answers:
+            - { value: 'true', correct: true }
+            - { value: 'false', correct: false }
+            - { value: '1', correct: false }

@@ -8,7 +8,6 @@ questions:
             - {value: 'if(strpos($mystring, "PHP") === true', correct: false}
             - {value: 'if(strloc($mystring, "PHP") == true', correct: false}
             - {value: 'if(strloc($mystring, "PHP") === false)', correct: false}
-
     -
         question: 'Which of the following are not valid ways to embed a variable into a string?'
         answers:
@@ -131,7 +130,7 @@ questions:
                     Which string does the following PCRE regular expression match?
                     $regex = "/^([a-z]{5})[1-5]+([a-z]+)/";
         answers:
-            - {value: Hello34262343goodbye', correct: false}
+            - {value: 'Hello34262343goodbye', correct: false}
             - {value: 'frank12345abc', correct: true}
             - {value: 'hello34212343goodbye', correct: true}
             - {value: 'abcdefghi12345abc', correct: false}
@@ -152,161 +151,149 @@ questions:
             - {value: 'parse_str() using regular expressions', correct: false}
             - {value: 'strregex* regular expression functions', correct: false}
             - {value: 'ereg* regular expression functions', correct: false}
-
-            
-  -
-    question: |
-                Assuming UTF-8 encoding, what is the value of $count?
-                $count = strlen($data);
-    answers:
-      - { value: '0', correct: false }
-      - { value: '4', correct: false }
-      - { value: '5', correct: true }
-      - { value: '7', correct: false }
-  -
-    question: |
-                What is the output of this code?
-                $world = 'world';
-                echo <<<'TEXT'
-                hello $world
-                TEXT;
-    answers:
-      - { value: 'hello world', correct: false }
-      - { value: 'hello $world', correct: false }
-      - { value: 'PHP Parser error', correct: true }
-
-
-
-  -
-    question: |
-              Which parts of the text are matched in the following regular expression?
-              $text = <<<EOT
-              The big bang bonged under the bung.
-              EOT;
-              preg_match_all('@b.n?g@', $text, $matches);
-    answers:
-      - { value: 'bang bong bung', correct: false }
-      - { value: 'bang bonged bung', correct: false }
-      - { value: 'big bang bong bung', correct: true }
-      - { value: 'big bang bung', correct: false }
-  -
-    question: |
-                What will the following code piece print?
-                echo strtr('Apples and bananas', 'ae', 'ea')
-    answers:
-      - { value: 'Applas end benenes', correct: true }
-      - { value: 'Epplas end benenes', correct: false }
-      - { value: 'Apples and bananas', correct: false }
-      - { value: 'Applas end bananas', correct: false }
-
-  -
-    question: |
-                You want to access the 3rd character of a string, contained in the variable $test. Which of the following
-                possibilites work? (Choose 2)
-    answers:
-      - { value: 'echo $test(3);', correct: false }
-      - { value: 'echo $test[2];', correct: true }
-      - { value: 'echo $test(2);', correct: false }
-      - { value: 'echo $test{2};', correct: true }
-      - { value: 'echo $test{3};', correct: false }
-  -
-    question: |
-                Which sentence describes the following regular expression match?
-                preg_match('/^\d+(?:\.[0-9]+)?$/', $test);
-    answers:
-      - { value: 'It matches float numbers with thousand seperators.', correct: false }
-      - { value: 'It matches float numbers without thousand seperators.', correct: true }
-      - { value: 'It matches binary integer numbers.', correct: false }
-      - { value: 'It matches any string.', correct: false }
-      - { value: 'It does not match anything', correct: false }
-  -
-    question: You need to escape special characters to use user input inside a regular expression. Which functionswould you use? (Choose 2)
-    answers:
-      - { value: 'addslashes()', correct: false }
-      - { value: 'htmlentities()', correct: false }
-      - { value: 'preg_quote()', correct: true }
-      - { value: 'regex_quote()', correct: false }
-      - { value: 'quote_meta()', correct: true }
-  -
-    question: |
-                How many elements does the $matches array contain after the following function call is performed?
-                preg_match('/^(\d{1,2}([a-z]+))(?:\s*)\S+ (?=201[0-9])/', '21st March 2014', $matches);
-    answers:
-      - { value: '1', correct: false }
-      - { value: '2', correct: false }
-      - { value: '3', correct: true }
-      - { value: '4', correct: false }
-  -
-    question: |
-                How many elements does the array $matches from the following code contain?
-                $str = "The cat sat on the roof of their house.";
-                $matches = preg_split("/(the)/i", $str, -1, PREG_SPLIT_DELIM_CAPTURE);
-    answers:
-      - { value: '2', correct: false }
-      - { value: '3', correct: false }
-      - { value: '4', correct: false }
-      - { value: '7', correct: true }
-      - { value: '9', correct: false }
-
-      
-  -
-    question: |
-                What is the length of a string returned by: md5(rand(), TRUE);
-    answers:
-      - { value: 'Depends on the value returned by rand() function', correct: false }
-      - { value: '32', correct: false }
-      - { value: '24', correct: false }
-      - { value: '16', correct: true }
-      - { value: '64', correct: false }
-  -
-    question: |
-                What is the return value of the following code?
-                strpos("me myself and I", "m", 2)
-    answers:
-      - { value: '2', correct: false }
-      - { value: '3', correct: true }
-      - { value: '4', correct: false }
-      - { value: '0', correct: false }
-      - { value: '1', correct: false }
-      
-  -
-    question: |
-                What is the return value of the following code: substr_compare("foobar", "bar", 3);
-    answers:
-      - { value: '-1', correct: false }
-      - { value: '1', correct: false }
-      - { value: 'TRUE', correct: false }
-      - { value: '0', correct: true }
-      - { value: 'FALSE', correct: false }
-
-  -
-    question: |
-                You want to allow your users to submit HTML code in a form,
-                which will then be displayed as real code and not affect your page layout.
-                Which function do you apply to the text, when displaying it? (Choose 2)
-    answers:
-      - { value: 'strip_tags()', correct: false }
-      - { value: 'htmlentities()', correct: true }
-      - { value: 'htmltidy()', correct: false }
-      - { value: 'htmlspecialchars()', correct: true }
-      - { value: 'showhtml()', correct: false }
-  -
-    question: |
-                How many elements does the array $pieces contain after the following piece of code has been executed?
-                $pieces = explode("/", "///");
-    answers:
-      - { value: '0', correct: false }
-      - { value: '3', correct: false }
-      - { value: '4', correct: true }
-      - { value: '5', correct: false }
-  -
-    question: |
-                Which string will be returned by the following function call?
-                $test = '/etc/conf.d/wireless';
-                substr($test, strrpos($test, '/')); // note that strrpos() is being called, and not strpos()
-    answers:
-      - { value: '""', correct: false }
-      - { value: '"/wireless"', correct: true }
-      - { value: '"wireless"', correct: false }
-      - { value: '"/conf.d/wireless"', correct: false }
-      - { value: '"/etc"', correct: false }
+    -
+        question: |
+                    Assuming UTF-8 encoding, what is the value of $count?
+                    $count = strlen($data);
+        answers:
+            - { value: '0', correct: false }
+            - { value: '4', correct: false }
+            - { value: '5', correct: true }
+            - { value: '7', correct: false }
+    -
+        question: |
+                    What is the output of this code?
+                    $world = 'world';
+                    echo <<<'TEXT'
+                    hello $world
+                    TEXT;
+        answers:
+            - { value: 'hello world', correct: false }
+            - { value: 'hello $world', correct: false }
+            - { value: 'PHP Parser error', correct: true }
+    -
+        question: |
+                  Which parts of the text are matched in the following regular expression?
+                  $text = <<<EOT
+                  The big bang bonged under the bung.
+                  EOT;
+                  preg_match_all('@b.n?g@', $text, $matches);
+        answers:
+            - { value: 'bang bong bung', correct: false }
+            - { value: 'bang bonged bung', correct: false }
+            - { value: 'big bang bong bung', correct: true }
+            - { value: 'big bang bung', correct: false }
+    -
+        question: |
+                    What will the following code piece print?
+                    echo strtr('Apples and bananas', 'ae', 'ea')
+        answers:
+            - { value: 'Applas end benenes', correct: true }
+            - { value: 'Epplas end benenes', correct: false }
+            - { value: 'Apples and bananas', correct: false }
+            - { value: 'Applas end bananas', correct: false }
+    -
+        question: |
+                    You want to access the 3rd character of a string, contained in the variable $test. Which of the following
+                    possibilites work? (Choose 2)
+        answers:
+            - { value: 'echo $test(3);', correct: false }
+            - { value: 'echo $test[2];', correct: true }
+            - { value: 'echo $test(2);', correct: false }
+            - { value: 'echo $test{2};', correct: true }
+            - { value: 'echo $test{3};', correct: false }
+    -
+        question: |
+                    Which sentence describes the following regular expression match?
+                    preg_match('/^\d+(?:\.[0-9]+)?$/', $test);
+        answers:
+            - { value: 'It matches float numbers with thousand seperators.', correct: false }
+            - { value: 'It matches float numbers without thousand seperators.', correct: true }
+            - { value: 'It matches binary integer numbers.', correct: false }
+            - { value: 'It matches any string.', correct: false }
+            - { value: 'It does not match anything', correct: false }
+    -
+        question: 'You need to escape special characters to use user input inside a regular expression. Which functionswould you use? (Choose 2)'
+        answers:
+            - { value: 'addslashes()', correct: false }
+            - { value: 'htmlentities()', correct: false }
+            - { value: 'preg_quote()', correct: true }
+            - { value: 'regex_quote()', correct: false }
+            - { value: 'quote_meta()', correct: true }
+    -
+        question: |
+                    How many elements does the $matches array contain after the following function call is performed?
+                    preg_match('/^(\d{1,2}([a-z]+))(?:\s*)\S+ (?=201[0-9])/', '21st March 2014', $matches);
+        answers:
+            - { value: '1', correct: false }
+            - { value: '2', correct: false }
+            - { value: '3', correct: true }
+            - { value: '4', correct: false }
+    -
+        question: |
+                    How many elements does the array $matches from the following code contain?
+                    $str = "The cat sat on the roof of their house.";
+                    $matches = preg_split("/(the)/i", $str, -1, PREG_SPLIT_DELIM_CAPTURE);
+        answers:
+            - { value: '2', correct: false }
+            - { value: '3', correct: false }
+            - { value: '4', correct: false }
+            - { value: '7', correct: true }
+            - { value: '9', correct: false }
+    -
+        question: 'What is the length of a string returned by: md5(rand(), TRUE)'
+        answers:
+            - { value: 'Depends on the value returned by rand() function', correct: false }
+            - { value: '32', correct: false }
+            - { value: '24', correct: false }
+            - { value: '16', correct: true }
+            - { value: '64', correct: false }
+    -
+        question: |
+                    What is the return value of the following code?
+                    strpos("me myself and I", "m", 2)
+        answers:
+            - { value: '2', correct: false }
+            - { value: '3', correct: true }
+            - { value: '4', correct: false }
+            - { value: '0', correct: false }
+            - { value: '1', correct: false }
+    -
+        question: 'What is the return value of the following code: substr_compare("foobar", "bar", 3)'
+        answers:
+            - { value: '-1', correct: false }
+            - { value: '1', correct: false }
+            - { value: 'TRUE', correct: false }
+            - { value: '0', correct: true }
+            - { value: 'FALSE', correct: false }
+    -
+        question: |
+                    You want to allow your users to submit HTML code in a form,
+                    which will then be displayed as real code and not affect your page layout.
+                    Which function do you apply to the text, when displaying it? (Choose 2)
+        answers:
+            - { value: 'strip_tags()', correct: false }
+            - { value: 'htmlentities()', correct: true }
+            - { value: 'htmltidy()', correct: false }
+            - { value: 'htmlspecialchars()', correct: true }
+            - { value: 'showhtml()', correct: false }
+    -
+        question: |
+                    How many elements does the array $pieces contain after the following piece of code has been executed?
+                    $pieces = explode("/", "///");
+        answers:
+            - { value: '0', correct: false }
+            - { value: '3', correct: false }
+            - { value: '4', correct: true }
+            - { value: '5', correct: false }
+    -
+        question: |
+                    Which string will be returned by the following function call?
+                    $test = '/etc/conf.d/wireless';
+                    substr($test, strrpos($test, '/')); // note that strrpos() is being called, and not strpos()
+        answers:
+            - { value: '""', correct: false }
+            - { value: '"/wireless"', correct: true }
+            - { value: '"wireless"', correct: false }
+            - { value: '"/conf.d/wireless"', correct: false }
+            - { value: '"/etc"', correct: false }
